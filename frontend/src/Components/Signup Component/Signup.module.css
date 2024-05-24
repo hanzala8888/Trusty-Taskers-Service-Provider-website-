@@ -1,0 +1,171 @@
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 40%;
+    max-width: 600px;
+    background: #fecaca;
+    border-radius: 20px;
+    animation: fadeInUp 1s ease-out;
+    margin-top: 150px;    
+}
+.text{
+    color: #d01c28;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.register h1 {
+    margin-left: 23px;
+    text-align: center;
+}
+
+  .inputBox{
+    display: block;
+    margin: 25px;
+    padding: 7px;
+    width: 300px;
+    border: 1px solid #d01c28;
+  }
+  
+  .invalid-input{
+    color: #d01c28;
+    margin-top: -20px;
+    display: block;
+    margin-left: 25px;
+    font-size: 14px;
+  }
+
+  .register {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: auto;
+    padding: 50px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;  
+    animation: slideInFromRight 1s ease-out; 
+}
+  
+.input {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 65px;
+    background: #cfcccc;
+    border-radius: 6px;
+    animation: fadeIn 1s ease-out;
+}
+.input img {
+    margin: 0px 30px;
+}
+
+.input input {
+    height: 30px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+}
+  .appButton {
+    padding: 18px 10px;
+    background-color: #d01c28;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 220px;
+    font-size: 16px;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    border: none;   
+}
+.errorMessage{
+    font-size: 18px;
+    font-weight: 600px;
+    color: #d01c28;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1300px) {
+    .signupContainer {
+        width: 70%;
+        margin-top: 150px;
+    }
+    .register{
+        align-items: center;
+    }
+    .input {
+        width: 100%;
+    }
+    .input img {
+        margin: 0 15px;
+    }
+    .input input{
+        width: 100%;
+    }
+    .appButton {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signupContainer {
+        width: 90%;
+        margin-top: 150px;
+    }
+    .register h1{
+        text-align: center;
+        margin-left: -10px;
+    }
+    .input img {
+        padding-right: 10px;
+    }
+    .input input {
+        width: 100%;
+        font-size: 16px;
+    }
+    .appButton {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
