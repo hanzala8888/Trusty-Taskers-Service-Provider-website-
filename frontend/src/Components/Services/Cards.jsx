@@ -11,8 +11,8 @@ function Card(props){
           <div className='card_info'>
               <span className='card_category'>{props.title}</span>
               <h3 className='card_title'>{props.sname}</h3>
-              <NavLink to='/bookingform'>
-                <button className='card_btn'>Book Now</button>
+              <NavLink to='/AllUsers'>
+                <button className='card_btn'>View More</button>
               </NavLink>
           </div>
         </div>
