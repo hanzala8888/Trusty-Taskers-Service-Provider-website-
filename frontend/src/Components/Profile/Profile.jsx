@@ -6,6 +6,10 @@ export const Profile = () => {
     const [userDetails, setUserDetails] = useState(null);
 
     useEffect(() => {
+        document.title = "Trusty Taskers - Profile";
+      }, []);
+
+    useEffect(() => {
         // Fetch user details from localStorage or API
         const storedUserDetails = localStorage.getItem("loginusers");
         if (storedUserDetails) {

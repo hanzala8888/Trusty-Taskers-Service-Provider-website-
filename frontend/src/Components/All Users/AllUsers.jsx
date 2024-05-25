@@ -7,17 +7,34 @@ import styles from "./AllUsers.module.css";
 
 const AllUsers = () => {
   const [services, setServices] = useState([]);
+  const [userId, setUserId] = useState(null);
   const location = useLocation();
 
+  // Fetch userId from localStorage when the component mounts
   useEffect(() => {
-    getServices();
-  });
+    const storedUser = JSON.parse(localStorage.getItem("loginusers"));
+    if (storedUser && storedUser._id) {
+      setUserId(storedUser._id);
+    }
+  }, []);
+  useEffect(() => {
+    if (userId !== null) {
+      getServices();
+    }
+  }, [location, userId]);
 
   const getServices = async () => {
     try {
       const queryParams = new URLSearchParams(location.search);
       const category = queryParams.get('category');
-      let result = await fetch(`http://localhost:4500/services?category=${category}`);
+      const url = new URL("http://localhost:4500/services");
+      if (category) {
+        url.searchParams.append('category', category);
+      }
+      if (userId) {
+        url.searchParams.append('userId', userId);
+      }
+      let result = await fetch(url);
       result = await result.json();
       if (Array.isArray(result)) {
           setServices(result);

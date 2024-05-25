@@ -87,21 +87,45 @@ app.post('/services',async(req,resp)=>{
     resp.send(result);
 });
 
-app.get('/services', async (req, resp) => {
+//Get services based on a category
+app.get("/services", async (req, resp) => {
     let category = req.query.category;
+    let userId = req.query.userId;
     let service;
     if (category) {
-        service = await Service.find({ category: category });
+      service = await Service.find({ category: category });
     } else {
-        service = await Service.find();
+      service = await Service.find();
     }
-
     if (service.length > 0) {
+      if (userId) {
+        service = service.filter((service) => service.userId !== userId);
+      }
+  
+      if (service.length > 0) {
         resp.send(service);
-    } else { 
+      } else {
         resp.send({ result: "No Product's Found" });
+      }
+    } else {
+      resp.send({ result: "No services found" });
     }
+  });
+
+//search API to search services
+app.get("/search/:key", async (req, resp) => {
+    let result = await Service.find({
+        "$or":[
+            {name: {$regex:req.params.key}},
+            {phone: {$regex:req.params.key}},
+            {category: {$regex:req.params.key}},
+            {price: {$regex:req.params.key}},
+            {description: {$regex:req.params.key}}
+        ]
+    });
+    resp.send(result);
 });
+
 // app.post('/send', (req, res) => {
 //     const { name, email, message } = req.body;
   
@@ -130,13 +154,13 @@ app.get('/services', async (req, resp) => {
 
 
 //forgot password
-app.post('/forgotpassword', async (req, resp) => {
-    /*const{email} = req.body;
-    User.findOne({email:email})
-    .then(user => {
-        if(!user){
-            return resp.send({Status: "User not existed"});
-        }
-    })*/
-});
+// app.post('/forgotpassword', async (req, resp) => {
+//     const{email} = req.body;
+//     User.findOne({email:email})
+//     .then(user => {
+//         if(!user){
+//             return resp.send({Status: "User not existed"});
+//         }
+//     })
+// });
 app.listen(4500);
