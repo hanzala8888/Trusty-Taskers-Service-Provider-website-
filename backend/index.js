@@ -2,10 +2,14 @@ const express=require('express');
 require('./database/config');
 const User = require('./database/User');
 const Service = require('./database/Services');
+//const bodyParser = require('body-parser');
+//const nodemailer = require('nodemailer');
+
 const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+//app.use(bodyParser.json());
 app.use(cors());
 
 //register
@@ -83,15 +87,47 @@ app.post('/services',async(req,resp)=>{
     resp.send(result);
 });
 
-app.get('/services',async(req,resp)=>{
-    let service = await Service.find();
-    if(service.length>0){
-        resp.send(service);
+app.get('/services', async (req, resp) => {
+    let category = req.query.category;
+    let service;
+    if (category) {
+        service = await Service.find({ category: category });
+    } else {
+        service = await Service.find();
     }
-    else{ 
-        resp.send({result:"No Product's Found"})
+
+    if (service.length > 0) {
+        resp.send(service);
+    } else { 
+        resp.send({ result: "No Product's Found" });
     }
 });
+// app.post('/send', (req, res) => {
+//     const { name, email, message } = req.body;
+  
+//     const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         user: 'your-email@gmail.com', // replace with your email
+//         pass: 'your-email-password', // replace with your email password
+//       },
+//     });
+  
+//     const mailOptions = {
+//       from: email,
+//       to: 'awanhanzala6@gmail.com', // replace with the recipient's email
+//       subject: 'New Message from Contact Form',
+//       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+//     };
+  
+//     transporter.sendMail(mailOptions, (error, info) => {
+//       if (error) {
+//         return res.status(500).send(error.toString());
+//       }
+//       res.send('Email sent: ' + info.response);
+//     });
+//   });
+
 
 //forgot password
 app.post('/forgotpassword', async (req, resp) => {

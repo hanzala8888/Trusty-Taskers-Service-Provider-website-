@@ -1,29 +1,32 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import styles from "./AllUsers.module.css";
 
 const AllUsers = () => {
   const [services, setServices] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     getServices();
-  }, []);
+  });
 
   const getServices = async () => {
     try {
-      let result = await fetch("http://localhost:4500/services");
+      const queryParams = new URLSearchParams(location.search);
+      const category = queryParams.get('category');
+      let result = await fetch(`http://localhost:4500/services?category=${category}`);
       result = await result.json();
       if (Array.isArray(result)) {
-        setServices(result);
-        console.log("Services", result);
+          setServices(result);
+          console.log("Services", result);
       } else {
-        setServices([]);
+          setServices([]);
       }
     } catch (error) {
-      console.error("Error fetching services:", error);
+      console.error("Error fetching products:", error);
     }
   };
 
@@ -55,7 +58,7 @@ const AllUsers = () => {
             </div>
           ))
         ) : (
-          <p>No services available</p>
+          <p className={styles.no_services}>No services available</p>
         )}
       </div>
     </div>

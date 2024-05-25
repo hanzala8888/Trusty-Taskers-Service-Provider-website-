@@ -107,6 +107,14 @@ body {
   text-decoration: none;
 }
 
+.no_services{
+  font-size: 64px;
+  font-weight: 700;
+  color: #d01c28;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
 @media (max-width: 768px) {
   .heading_style {
     padding: 20px 0;
@@ -122,6 +130,14 @@ body {
   .card:hover {
     box-shadow: 0px 25px 18px -8px rgba(0, 0, 0, 0.2);
     transform: scale(1.05, 1.05);
+  }
+  .no_services{
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    color: #d01c28;
+    margin-top: 120px;
+    margin-bottom: 120px;
   }
 }
 
