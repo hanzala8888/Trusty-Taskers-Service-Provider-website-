@@ -237,7 +237,15 @@ const AddServices = () => {
     }
   }, [category]);
 
-  const handleService = async () => {
+
+  const handleService = async () => {  
+    if (!category && !price && !description) {
+      toast.error("Please fill all the fields", {
+        className: styles.custom_error_toast,
+      });
+      return;
+    }
+
     if (!name) {
       toast.error("Name is required", {
         className: styles.custom_error_toast,
@@ -246,7 +254,7 @@ const AddServices = () => {
     }
 
     if (!category) {
-      toast.error("Category is required", {
+      toast.error("Profession is required", {
         className: styles.custom_error_toast,
       });
       return;
@@ -265,26 +273,72 @@ const AddServices = () => {
       });
       return;
     }
+ 
+    let result = await fetch("http://localhost:4500/services", {
+      method: "post",
+      body: JSON.stringify({ name, phone, category, price, description,userId}),
+      headers: { "Content-Type": "application/json" },
+    });
 
-    try {
-      let result = await fetch("http://localhost:4500/services", {
-        method: "post",
-        body: JSON.stringify({ name, phone, category, price, description, userId }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      result = await result.json();
-      console.log(result);
-      toast.success("Service has been added successfully!", {
-        className: styles.custom_success_toast,
-      });
-    } catch (error) {
-      console.error("Error adding service:", error);
-      toast.error("Failed to add service. Please try again later.", {
-        className: styles.custom_error_toast,
-      });
+    result = await result.json();
+    console.log(result); 
+  
+    if (result.result === 'You have Already Registered with this service') {
+      toast.error(result.result);
+    } else {
+      toast.success("Service has been added successfully!");
     }
   };
+
+
+  // const handleService = async () => {
+    // if (!name) {
+    //   toast.error("Name is required", {
+    //     className: styles.custom_error_toast,
+    //   });
+    //   return;
+    // }
+
+    // if (!category) {
+    //   toast.error("Category is required", {
+    //     className: styles.custom_error_toast,
+    //   });
+    //   return;
+    // }
+
+    // if (!price) {
+    //   toast.error("Price is required", {
+    //     className: styles.custom_error_toast,
+    //   });
+    //   return;
+    // }
+
+    // if (!description) {
+    //   toast.error("Description is required", {
+    //     className: styles.custom_error_toast,
+    //   });
+    //   return;
+    // }
+
+  //   try {
+  //     let result = await fetch("http://localhost:4500/services", {
+  //       method: "post",
+  //       body: JSON.stringify({ name, phone, category, price, description, userId }),
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+
+  //     result = await result.json();
+  //     console.log(result);
+  //     toast.success("Service has been added successfully!", {
+  //       className: styles.custom_success_toast,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error adding service:", error);
+  //     toast.error("Failed to add service. Please try again later.", {
+  //       className: styles.custom_error_toast,
+  //     });
+  //   }
+  // };
 
   return (
     <>

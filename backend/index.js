@@ -81,10 +81,20 @@ function verifyToken(req, resp, next){
 }
 
 //services listing
-app.post('/services',async(req,resp)=>{
-    let service = new Service(req.body);
-    let result = await service.save();
-    resp.send(result);
+app.post("/services", async (req, resp) => {
+    let service;
+    let category = req.body.category;
+    let userId = req.body.userId;
+
+    const existingUser=await Service.findOne({userId,category});
+    console.log(existingUser);
+    if(existingUser){
+        return resp.send({ result: 'You have Already Registered with this service' });
+    }else{
+        let service = new Service(req.body);
+        let result = await service.save();
+        resp.send(result);
+    }
 });
 
 //Get services based on a category
@@ -117,13 +127,33 @@ app.get("/search/:key", async (req, resp) => {
     let result = await Service.find({
         "$or":[
             {name: {$regex:req.params.key}},
-            {phone: {$regex:req.params.key}},
-            {category: {$regex:req.params.key}},
-            {price: {$regex:req.params.key}},
-            {description: {$regex:req.params.key}}
+            {category: {$regex:req.params.key}}
         ]
     });
     resp.send(result);
+});
+
+
+app.get("/showProfile", async(req,resp)=>{
+    let user = req.query.userId;
+    let result = await Service.find({userId : user});
+    resp.send(result)
+})
+
+app.put('/updateProfile', async (req, res) => {
+    const { userId } = req.query;
+    const updateData = req.body;
+
+    try {
+        const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
+        if (user) {
+            res.json({ success: true, message: 'Profile updated successfully' });
+        } else {
+            res.json({ success: false, message: 'User not found' });
+        }
+    } catch (error) {
+        res.json({ success: false, message: 'Failed to update profile', error });
+    }
 });
 
 // app.post('/send', (req, res) => {

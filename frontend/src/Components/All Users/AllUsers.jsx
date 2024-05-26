@@ -17,11 +17,12 @@ const AllUsers = () => {
       setUserId(storedUser._id);
     }
   }, []);
+
   useEffect(() => {
     if (userId !== null) {
       getServices();
     }
-  }, [location, userId]);
+  });
 
   const getServices = async () => {
     try {
@@ -38,7 +39,7 @@ const AllUsers = () => {
       result = await result.json();
       if (Array.isArray(result)) {
           setServices(result);
-          console.log("Services", result);
+          //console.log("Services", result);
       } else {
           setServices([]);
       }
@@ -47,12 +48,32 @@ const AllUsers = () => {
     }
   };
 
+  
+
+  const searchHandle = async (event) =>{
+    console.warn(event.target.value);
+    let key = event.target.value;
+    if(key){
+        let result = await fetch(`http://localhost:4500/search/${key}`);
+        result = await result.json();
+        if(result){
+            setServices(result);
+        }
+    }
+    else{
+        getServices();
+    }
+};
   return (
     <>
     <Navbar/>
     
     <div className={styles["service-list-container"]}>
       <h3 className={styles.heading_style}>List of Service Providers</h3>
+      
+      {/* <input className='search-input' type='text' placeholder='Search Product'
+        onChange={searchHandle}/> */}
+
       <div className={styles.cards}>
         {services.length > 0 ? (
           services.map((service) => (

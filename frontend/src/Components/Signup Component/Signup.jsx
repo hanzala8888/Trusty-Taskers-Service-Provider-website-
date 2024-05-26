@@ -220,8 +220,6 @@ export const Signup = () => {
     }, []);
 
     const collectData = async () => {
-        console.log("Collecting data...");
-
         // All fields are not empty
         if (!name && !email && !phone && !password && !confirmPassword) {
             toast.error("Please fill in all fields");
