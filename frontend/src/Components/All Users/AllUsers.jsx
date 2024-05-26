@@ -50,20 +50,20 @@ const AllUsers = () => {
 
   
 
-  const searchHandle = async (event) =>{
-    console.warn(event.target.value);
-    let key = event.target.value;
-    if(key){
-        let result = await fetch(`http://localhost:4500/search/${key}`);
-        result = await result.json();
-        if(result){
-            setServices(result);
-        }
-    }
-    else{
-        getServices();
-    }
-};
+//   const searchHandle = async (event) =>{
+//     console.warn(event.target.value);
+//     let key = event.target.value;
+//     if(key){
+//         let result = await fetch(`http://localhost:4500/search/${key}`);
+//         result = await result.json();
+//         if(result){
+//             setServices(result);
+//         }
+//     }
+//     else{
+//         getServices();
+//     }
+// };
   return (
     <>
     <Navbar/>
