@@ -1,12 +1,14 @@
-// src/components/UpdateProfile/UpdateProfile.js
-
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './UpdateProfile.module.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 
 const UpdateProfile = () => {
     const location = useLocation();
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const { profile } = location.state; // get the profile data from state
 
     const [updatedProfile, setUpdatedProfile] = useState(profile);
@@ -24,7 +26,7 @@ const UpdateProfile = () => {
         const userId = JSON.parse(localStorage.getItem("loginusers"))._id;
         
         try {
-            let result = await fetch(`http://localhost:4500/updateProfile?userId=${userId}`, {
+            let update = await fetch(`http://localhost:4500/updateProfile?userId=${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,14 +34,13 @@ const UpdateProfile = () => {
                 body: JSON.stringify(updatedProfile)
             });
     
-            result = await result.json();
+            update = await update.json();
     
-            console.log('Server response:', result); // Add this line to log the response
-    
-            if (result.success) {
-                navigate('/profile'); // Redirect to the profile page after update
+            if (update.result === 'Result successfully Updated') {
+                toast.success("Profile updated successfully!");
+                
             } else {
-                alert('Failed to update profile');
+                toast.error("Unsuccessful Updation");
             }
         } catch (error) {
             console.error('Error updating profile:', error);
@@ -47,30 +48,36 @@ const UpdateProfile = () => {
         }
     };
     
+    
 
     return (
+        <>
+        <Navbar/>
+        <h1 className={styles.main_heading}>Update {JSON.parse(localStorage.getItem("loginusers")).name}'s PROFILE</h1>
         <div className={styles.updateProfileContainer}>
-            <form className={styles.form}>
+            <form className={styles.cardInfo}>
                 <div className={styles.formGroup}>
-                    <label htmlFor="category" className={styles.label}>Profession</label>
+                    <label htmlFor="category" className={styles.cardCategory}>Profession</label>
                     <input
                         type="text"
                         id="category"
                         name="category"
                         value={updatedProfile.category}
-                        onChange={handleChange}
-                        className={styles.input}
+                        // onChange={handleChange}
+                        className={styles.cardInput}
+                        readOnly
                     />
                 </div>
                 <div className={styles.formGroup}>
-                    <label htmlFor="name" className={styles.label}>Name</label>
+                    <label htmlFor="name" className={styles.cardTitle}>Name</label>
                     <input
                         type="text"
                         id="name"
                         name="name"
                         value={updatedProfile.name}
-                        onChange={handleChange}
-                        className={styles.input}
+                       // onChange={handleChange}
+                        className={styles.cardInput}
+                        readOnly
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -81,18 +88,7 @@ const UpdateProfile = () => {
                         name="phone"
                         value={updatedProfile.phone}
                         onChange={handleChange}
-                        className={styles.input}
-                    />
-                </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={updatedProfile.email}
-                        onChange={handleChange}
-                        className={styles.input}
+                        className={styles.cardInput}
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -103,7 +99,7 @@ const UpdateProfile = () => {
                         name="price"
                         value={updatedProfile.price}
                         onChange={handleChange}
-                        className={styles.input}
+                        className={styles.cardInput}
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -113,12 +109,15 @@ const UpdateProfile = () => {
                         name="description"
                         value={updatedProfile.description}
                         onChange={handleChange}
-                        className={styles.textarea}
+                        className={styles.cardInput}
                     />
                 </div>
-                <button onClick={handleSubmit} type="submit" className={styles.button}>Update Profile</button>
+                <button onClick={handleSubmit} type="submit" className={styles.cardBtn}>Update Profile</button>
             </form>
         </div>
+        <ToastContainer/>
+        <Footer/>
+        </>
     );
 };
 

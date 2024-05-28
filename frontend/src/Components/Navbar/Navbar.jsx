@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from './logo1.jpeg';
 import './Navbar.css'
 
@@ -40,11 +40,11 @@ const Navbar = () => {
             </div> :
             <div className='both_btn'>
                 <NavLink className={isAuthenticated ? "item inActiveStyle" : "item activeStyle"} to="/login">
-                    <a href='http://localhost:3000/login' className="loginbtn">Log in</a>
+                    <Link to='http://localhost:3000/login' className="loginbtn">Log in</Link>
                 </NavLink>
                 
                 <NavLink className={isAuthenticated ? "item inActiveStyle" : "item activeStyle"} to="/signup">
-                    <a href='http://localhost:3000/signup' className="signbtn">Sign up</a>
+                    <Link to='http://localhost:3000/signup' className="signbtn">Sign up</Link>
                 </NavLink>
             </div>}
     </div>

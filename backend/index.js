@@ -138,23 +138,28 @@ app.get("/showProfile", async(req,resp)=>{
     let user = req.query.userId;
     let result = await Service.find({userId : user});
     resp.send(result)
-})
-
-app.put('/updateProfile', async (req, res) => {
-    const { userId } = req.query;
-    const updateData = req.body;
-
-    try {
-        const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
-        if (user) {
-            res.json({ success: true, message: 'Profile updated successfully' });
-        } else {
-            res.json({ success: false, message: 'User not found' });
-        }
-    } catch (error) {
-        res.json({ success: false, message: 'Failed to update profile', error });
-    }
 });
+
+app.put("/updateProfile",async(req,resp)=>{
+    let category = req.body.category;
+    let userId = req.body.userId;
+    let result=  await Service.updateOne(
+      {category:category,userId:userId},{$set:req.body}
+  )
+  console.group(result);
+  if(result.matchedCount==1){
+    resp.send({ result: "Result successfully Updated" });
+  }
+  });
+
+  app.delete("/Delete",async(req,resp)=>{
+    let category = req.query.category;
+    let userId = req.query.userId;
+    
+    let data=  await Service.deleteOne({category:category,userId:userId})
+    console.log(data)
+    resp.send("Successfully Deleted")
+  });
 
 // app.post('/send', (req, res) => {
 //     const { name, email, message } = req.body;
