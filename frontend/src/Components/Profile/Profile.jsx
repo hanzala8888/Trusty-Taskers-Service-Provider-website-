@@ -267,7 +267,9 @@ export const Profile = () => {
                         </div>
                     ))
                 ) : (
-                    <p className={styles.noServices}>No services available</p>
+                    <div className={styles.oops}>
+                    <p className={styles.no_services}>Add services first</p>
+                    </div>
                 )}
             </div>
             <Footer/>
