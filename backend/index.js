@@ -61,25 +61,6 @@ app.post("/login", async (req, resp) => {
     }
 });
 
-function verifyToken(req, resp, next){
-    let token = req.headers['authorization'];
-    if(token){
-        token = token.split(' ')[1];
-        console.warn("MC", token);
-    jwt.verify(token, secretKey, (err, valid) => {
-        if(err){
-            resp.status(401).send({result: "Please provide valid token"});
-        }   
-        else{
-            next();
-        }
-    })
-    }
-    else{
-        resp.status(403).send({result: "Please add token with header"});
-    }
-}
-
 //services listing
 app.post("/services", async (req, resp) => {
     let service;
@@ -133,13 +114,14 @@ app.get("/search/:key", async (req, resp) => {
     resp.send(result);
 });
 
-
+//show profile API
 app.get("/showProfile", async(req,resp)=>{
     let user = req.query.userId;
     let result = await Service.find({userId : user});
     resp.send(result)
 });
 
+//update profile API
 app.put("/updateProfile",async(req,resp)=>{
     let category = req.body.category;
     let userId = req.body.userId;
@@ -152,7 +134,8 @@ app.put("/updateProfile",async(req,resp)=>{
   }
   });
 
-  app.delete("/Delete",async(req,resp)=>{
+//selete profile API
+app.delete("/Delete",async(req,resp)=>{
     let category = req.query.category;
     let userId = req.query.userId;
     
@@ -160,6 +143,33 @@ app.put("/updateProfile",async(req,resp)=>{
     console.log(data)
     resp.send("Successfully Deleted")
   });
+
+
+  app.listen(4500);
+
+
+
+
+
+// function verifyToken(req, resp, next){
+//     let token = req.headers['authorization'];
+//     if(token){
+//         token = token.split(' ')[1];
+//         console.warn("MC", token);
+//     jwt.verify(token, secretKey, (err, valid) => {
+//         if(err){
+//             resp.status(401).send({result: "Please provide valid token"});
+//         }   
+//         else{
+//             next();
+//         }
+//     })
+//     }
+//     else{
+//         resp.status(403).send({result: "Please add token with header"});
+//     }
+// }
+
 
 // app.post('/send', (req, res) => {
 //     const { name, email, message } = req.body;
@@ -198,4 +208,3 @@ app.put("/updateProfile",async(req,resp)=>{
 //         }
 //     })
 // });
-app.listen(4500);
