@@ -18,11 +18,17 @@ app.post("/register", async (req, resp) => {
         console.log(req.body);
         // Check if the email already exists
         let existingUser = await User.findOne({ email: req.body.email });
+        let existingPhone = await User.findOne({ phone: req.body.phone });
 
         if (existingUser) {
             // If user already exists, send an error message
             return resp.status(400).json({ message: "User already registered" });
         }
+        if (existingPhone) {
+          // If user already exists, send an error message
+          return resp.status(400).json({ message: "Phone already registered" });
+      }
+
 
         // If email does not exist, proceed with registration
         let user = new User(req.body);

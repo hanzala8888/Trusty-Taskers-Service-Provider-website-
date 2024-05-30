@@ -44,7 +44,7 @@ const ContactForm = () => {
       {/*<div className={styles.s_icons}>
         <a href="https://www.whatsapp.com" icon={<WhatsAppIcon fontSize="24px" />} />
 </div>*/}
-        <form className="form" onSubmit={onSubmit}>
+        <form className={styles.C_form} onSubmit={onSubmit}>
           <div className={styles.form_control}>
             <label htmlFor="name">Name</label>
             <input type="text" name="name" />

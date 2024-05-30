@@ -43,8 +43,8 @@ nav {
     color: white;
 }
 
-.loginbtn,
-.signoutbtn {
+.loginbtns,
+.signoutbtns {
     font-size: 1.2rem;
     font-weight: 600;
     padding: 7px 20px;
@@ -56,7 +56,7 @@ nav {
     outline: none;
 }
 
-.signbtn{
+.signbtns{
     font-size: 1.2rem;
     font-weight: 600;
     padding: 7px 16px;
@@ -120,7 +120,6 @@ a {
     align-items: center;
 }
 
-
 @media screen and (max-width: 1100px) {
     nav {
         padding: 10px 1%; 
@@ -172,7 +171,7 @@ a {
         margin-right: -30px;
     }
 
-    .loginbtn {
+    .loginbtns {
         margin-right: 5px;
         text-decoration: none;
     }

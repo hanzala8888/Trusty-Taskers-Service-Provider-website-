@@ -35,16 +35,16 @@ const Navbar = () => {
             {auth ? 
             <div>
                 <NavLink onClick={logout} to="/signup">
-                    <button className="signoutbtn">Log out ({JSON.parse(auth).name})</button>
+                    <button className="signoutbtns">Log out ({JSON.parse(auth).name})</button>
                 </NavLink>
             </div> :
             <div className='both_btn'>
                 <NavLink className={isAuthenticated ? "item inActiveStyle" : "item activeStyle"} to="/login">
-                    <Link to='http://localhost:3000/login' className="loginbtn">Log in</Link>
+                    <Link to='http://localhost:3000/login' className="loginbtns">Log in</Link>
                 </NavLink>
                 
                 <NavLink className={isAuthenticated ? "item inActiveStyle" : "item activeStyle"} to="/signup">
-                    <Link to='http://localhost:3000/signup' className="signbtn">Sign up</Link>
+                    <Link to='http://localhost:3000/signup' className="signbtns">Sign up</Link>
                 </NavLink>
             </div>}
     </div>

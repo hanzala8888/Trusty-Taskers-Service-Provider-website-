@@ -21,7 +21,7 @@
     align-items: center;
     margin-top: 200px;
     padding: 20px; /* Add padding to create space between content and background */
-    border-radius: 10px; /* Add border radius for rounded corners */
+    border-radius: 3px; /* Add border radius for rounded corners */
   }
   
   .para1, .para2 {
@@ -32,20 +32,20 @@
   h4{
     font-weight: 700;
     font-size: 30px;
-    color: black;
+    color: rgb(255, 255, 255);
   }
   .para1 {
-    background-color: #db5b63; /* Add background color to para1 */
+    background-color: #d01c28; /* Add background color to para1 */
     padding: 20px; /* Adjust padding as needed */
-    border-radius: 10px; /* Add border radius for rounded corners */
+    border-radius: 3px; /* Add border radius for rounded corners */
     /*border: 2px solid black;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   }
   
   .para2 {
-    background-color: #db5b63; /* Add background color to para1 */
+    background-color: #d01c28; /* Add background color to para1 */
     padding: 20px; /* Adjust padding as needed */
-    border-radius: 10px; /* Add border radius for rounded corners */
+    border-radius: 3px; /* Add border radius for rounded corners */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   }
 

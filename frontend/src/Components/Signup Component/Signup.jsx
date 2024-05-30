@@ -336,7 +336,7 @@ export const Signup = () => {
                         </div>
 
                         <div className={styles.input}>
-                            <img src={phone_icon} width='30px' height='25px' alt='' className={styles.inputImg} />
+                            <img src={phone_icon} width='21px' height='25px' alt='' className={styles.inputImg} />
                             <input
                                 type='text'
                                 value={phone}
@@ -365,7 +365,7 @@ export const Signup = () => {
                             />
                         </div>
 
-                        <div>
+                        <div className={styles.file}>
                             <input
                                 type='file'
                                 accept='image/*' // Accept only image files
