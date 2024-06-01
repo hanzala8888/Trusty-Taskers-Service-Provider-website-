@@ -108,6 +108,9 @@
 
 /* Media Queries for responsive design at width 1024px or less */
 @media (max-width: 1024px) {
+  .main_heading{
+    margin-top: 105px;
+  }
   .card {
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */
@@ -133,6 +136,9 @@
 }
 
 @media (max-width: 768px) {
+  .main_heading{
+    margin-top: 105px;
+  }
   .card {
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */

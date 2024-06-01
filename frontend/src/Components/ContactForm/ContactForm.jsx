@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import Button from "../Button/Button";
 import styles from "./Contact.module.css";
 import { MdMessage } from "react-icons/md";
@@ -70,7 +69,7 @@ const ContactForm = () => {
         </form>
       </div>
       <div className={styles.contact_image}>
-        <img src="/Images/Service.png" alt="contact image" />
+        <img src="/Images/Service.png" alt="contact-img" />
       </div>
     </section>
     

@@ -13,7 +13,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     background: #d01c28;
-    padding: 5px 0%; /* Adjust padding for responsiveness */
+    padding: 5px 0%; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 1000;
     position: fixed;
@@ -45,7 +45,7 @@ nav {
 
 .loginbtns,
 .signoutbtns {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     padding: 7px 20px;
     background-color: white;
@@ -57,7 +57,7 @@ nav {
 }
 
 .signbtns{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     padding: 7px 16px;
     background-color: white;
@@ -88,7 +88,7 @@ a {
 
 #navbar .item {
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
     transition: 0.3s ease-in-out;
@@ -120,7 +120,7 @@ a {
 .mainbtn{
     background-color: #d01c28;
     border: none;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 500;
     padding-top: 15px;
 }
@@ -135,7 +135,7 @@ a {
 
 .dropdown-menu-custom a {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
     background-color: #d01c28;
@@ -169,9 +169,28 @@ a {
 }
 
 @media screen and (max-width: 1100px) {
+    .mainbtn{
+        background-color: #d01c28;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        padding-top: 15px;
+    }
+    
     nav {
         padding: 10px 1%; 
     }
+    #navbar .item {
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+        transition: 0.3s ease-in-out;
+        list-style: none;
+        padding: 0 8px;
+        position: relative;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -209,6 +228,16 @@ a {
         transition: right 0.5s ease-out;
         position: fixed;
         z-index: 1000;
+    }
+
+    .mainbtn{
+        background-color: #d01c28;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        padding-left: 8px;
+        padding-top: -20px;
+        padding-bottom: 30px;
     }
 
     #navbar.active {

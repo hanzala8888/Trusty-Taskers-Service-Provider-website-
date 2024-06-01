@@ -189,7 +189,7 @@ export const Profile = () => {
                         <div key={profile._id} className={styles.card}>
                             <img
                                 className={styles.teamImg}
-                                src="Images/profile-img.jpg"
+                                src={profile.image}
                                 alt="profile-img"
                             />
                             <div className={styles.cardInfo}>
