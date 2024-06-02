@@ -109,11 +109,12 @@ body {
 
 
 .no_services{
-  font-size: 64px;
+  font-size: 40px;
   font-weight: 700;
   color: #d01c28;
-  margin-top: 120px;
-  margin-bottom: 120px;
+  text-align: center;
+  margin-top: 210px;
+  margin-bottom: 260px;
 }
 
 @media (max-width: 768px) {

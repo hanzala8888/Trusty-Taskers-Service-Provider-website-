@@ -155,36 +155,38 @@ export const Login = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.container}>
-                <div className={styles.login}>
-                    <h1 className={styles.text}>LOG IN</h1>
-                    <div className={styles.underline}></div>
+            <div className={styles.whole_contents}>
+                <div className={styles.container}>
+                    <div className={styles.login}>
+                        <h1 className={styles.text}>LOG IN</h1>
+                        <div className={styles.underline}></div>
 
-                    <div className={styles.inputs}>
-                        <div className={styles.input}>
-                            <img src={email_icon} alt='' className={styles.inputImg} />
-                            <input className={styles.inputBox}
-                                type='text'
-                                placeholder='Enter Email'
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email} />
+                        <div className={styles.inputs}>
+                            <div className={styles.input}>
+                                <img src={email_icon} alt='' className={styles.inputImg} />
+                                <input className={styles.inputBox}
+                                    type='text'
+                                    placeholder='Enter Email'
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email} />
+                            </div>
+
+                            <div className={styles.input}>
+                                <img src={password_icon} alt='' className={styles.inputImg} />
+                                <input className={styles.inputBox}
+                                    type='password'
+                                    placeholder='Enter Password'
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password} />
+                            </div>
                         </div>
 
-                        <div className={styles.input}>
-                            <img src={password_icon} alt='' className={styles.inputImg} />
-                            <input className={styles.inputBox}
-                                type='password'
-                                placeholder='Enter Password'
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password} />
+                        <div className={styles.forgot_password}>
+                            Forgot Password?<NavLink to="/forgotpassword"><span>Click Here!</span></NavLink>
                         </div>
-                    </div>
 
-                    <div className={styles.forgot_password}>
-                        Forgot Password?<NavLink to="/forgotpassword"><span>Click Here!</span></NavLink>
+                        <NavLink className={styles.appButton} onClick={handleLogin}>LOG IN</NavLink>
                     </div>
-
-                    <NavLink className={styles.appButton} onClick={handleLogin}>LOG IN</NavLink>
                 </div>
             </div>
             <ToastContainer />

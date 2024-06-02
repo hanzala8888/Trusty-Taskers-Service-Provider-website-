@@ -1,4 +1,6 @@
-
+.whole_content{
+    overflow: hidden;
+}
 .signupContainer {
     display: flex;
     flex-direction: column;
