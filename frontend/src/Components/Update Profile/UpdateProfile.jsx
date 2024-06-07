@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,10 @@ const UpdateProfile = () => {
     const { profile } = location.state; // get the profile data from state
 
     const [updatedProfile, setUpdatedProfile] = useState(profile);
+
+    useEffect(() => {
+        document.title = "Trusty Taskers - Update Profile";
+      }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,8 +52,6 @@ const UpdateProfile = () => {
         }
     };
     
-    
-
     return (
         <>
         <Navbar/>

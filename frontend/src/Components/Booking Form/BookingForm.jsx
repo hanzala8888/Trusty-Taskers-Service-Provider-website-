@@ -1,10 +1,13 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import styles from './BookingForm.module.css';
 
 
 const BookingForm = () => {
+  useEffect(() => {
+    document.title = "Trusty Taskers - Book Service";
+  }, []);
 
   return (
     <>
@@ -13,11 +16,6 @@ const BookingForm = () => {
     <section className={styles.book_container}>
       <div className={styles.contact_form}>
         <form className="form">
-          <div className={styles.form_control}>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" />
-          </div>
-
           <div className={styles.form_control}>
             <label htmlFor="phone">Phone number</label>
             <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>

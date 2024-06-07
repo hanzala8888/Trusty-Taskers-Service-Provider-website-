@@ -8,7 +8,7 @@ import './Services.css';
 const Services = () => {
   
   useEffect(() => {
-    document.title = "Trusty Taskers - Services";
+    document.title = "Trusty Taskers - View Services";
   }, []);
 
   return (

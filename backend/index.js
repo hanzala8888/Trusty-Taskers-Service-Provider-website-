@@ -143,7 +143,7 @@ app.put("/updateProfile",async(req,resp)=>{
 app.delete("/Delete",async(req,resp)=>{
     let category = req.query.category;
     let userId = req.query.userId;
-    
+  
     let data=  await Service.deleteOne({category:category,userId:userId})
     console.log(data)
     resp.send("Successfully Deleted")

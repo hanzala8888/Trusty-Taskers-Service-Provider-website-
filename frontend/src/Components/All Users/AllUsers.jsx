@@ -89,9 +89,19 @@ const AllUsers = () => {
                 <p><strong>Phone:</strong> {service.phone}</p>
                 <p><strong>Price:</strong> {service.price}</p>
                 <p><strong>Description:</strong> {service.description}</p>
-                <NavLink to="/bookingform">
-                  <button className={styles.card_btn}>Book Now</button>
-                </NavLink>
+                <NavLink 
+                    to={{ 
+                      pathname: "/bookingform", 
+                      state: { 
+                        category: service.category, 
+                        name: service.name, 
+                        phone: service.phone, 
+                        description: service.description 
+                      } 
+                    }}
+                  >
+                    <button className={styles.card_btn}>Book Now</button>
+              </NavLink>
               </div>
             </div>
           ))

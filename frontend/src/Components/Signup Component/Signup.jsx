@@ -278,6 +278,11 @@ export const Signup = () => {
       return;
     }
 
+    if(!image){
+      toast.error("Choose the Profile image");
+      return;
+    }
+
     try {
       // Upload image to Firebase Storage
       const imageRef = ref(storage, `images/${image.name}`);
@@ -372,7 +377,7 @@ export const Signup = () => {
               </div>
 
               <div className={styles.input}>
-                <img src={password_icon} alt="" className={styles.inputImg} />
+                <img src={password_icon} alt="password-img" className={styles.inputImg} />
                 <input
                   type="password"
                   value={password}
@@ -382,7 +387,7 @@ export const Signup = () => {
               </div>
 
               <div className={styles.input}>
-                <img src={password_icon} alt="" className={styles.inputImg} />
+                <img src={password_icon} alt="password-img" className={styles.inputImg} />
                 <input
                   type="password"
                   value={confirmPassword}
