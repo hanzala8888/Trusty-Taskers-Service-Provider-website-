@@ -198,6 +198,14 @@
   margin-top: 10px;
 }
 
+.card_image {
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin-bottom: 30px;
+
+}
 .formContainer {
   display: flex;
   flex-wrap: wrap; /* Allow forms to wrap to the next row */
@@ -208,9 +216,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 15px;
+  margin: 50px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
   padding-bottom: 20px;
   border-radius: 8px;
   width: calc(400px - 70px); /* Display 2 forms in one row by default with spacing */
@@ -301,9 +309,12 @@
   .cardBtn{
     font-size: 12px;
   }
+  .card{
+    margin: 20px;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .main_heading{
     margin-top: 105px;
   }

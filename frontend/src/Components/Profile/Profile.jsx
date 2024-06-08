@@ -241,6 +241,25 @@ export const Profile = () => {
                 setShowConfirm(false);
             };
 
+    const getImageForCategory = (category) => {
+        switch(category.toLowerCase()) {
+            case 'electrician':
+                return '/Images/electrician.jpeg';
+            case 'plumber':
+                return '/Images/plumber.png';
+            case 'mechanic':
+                return '/Images/mechanic.png';
+            case 'cable operator':
+                return '/Images/cable operator.jpg';
+            case 'labor':
+                return '/Images/labor.png';
+            case 'carpenter':
+                return '/Images/carpenter.png';
+            default:
+                return '/Images/default.png'; // A default image if none match
+        }
+    }
+
     return (
         <>
             <Navbar/>
@@ -258,8 +277,15 @@ export const Profile = () => {
                         userProfile.map((profile, index) => (
                             <div key={profile._id} className={styles.card}>
                                 <div className={styles.cardInfo}>
-                                <h2 className={styles.serviceHeading}>Service {index + 1}</h2>
+                                    <h2 className={styles.serviceHeading}>Service {index + 1}</h2>
                                     <form>
+                                        <img 
+                                            className={styles.card_image} 
+                                            src={getImageForCategory(profile.category)} 
+                                            alt='service-img' 
+                                            height='70px' 
+                                            width='70px'
+                                        />
                                         <div className={styles.formGroup}>
                                             <label htmlFor="category" className={styles.cardCategory}>Profession</label>
                                             <input
@@ -342,9 +368,9 @@ export const Profile = () => {
             <Footer/>
             <ConfirmModal 
                 show={showConfirm} 
-               onConfirm={confirmDelete} 
-              onCancel={cancelDelete} 
-           />
+                onConfirm={confirmDelete} 
+                onCancel={cancelDelete} 
+            />
         </>
     );
 };
