@@ -9,7 +9,7 @@
     color: #000000;
     font-size: 1.5rem;
     margin-bottom: 30px;
-    margin-top: 90px;
+    margin-top: 85px;
     background-color: #fecaca;
   }
   .whole_para{
@@ -57,7 +57,7 @@
 
   @media screen and (max-width: 1070px) {
     .heading{
-      margin-top: 80px;
+      margin-top: px;
       width: 100%;
     }
     .add_card_container{
@@ -94,6 +94,12 @@
   }
 
   @media screen and (max-width: 1060px) {
+    .heading{
+      margin-top: 85px;
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 768px) {
     .heading{
       margin-top: 105px;
       width: 100%;

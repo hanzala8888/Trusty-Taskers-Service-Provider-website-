@@ -10,4 +10,6 @@ const serviceSchema = new mongoose.Schema({
     image:String
 });
 
+
+
 module.exports = mongoose.model("services", serviceSchema);

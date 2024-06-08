@@ -139,6 +139,36 @@ app.put("/updateProfile",async(req,resp)=>{
   }
   });
 
+
+  // app.put("/updateProfile", async (req, resp) => {
+  //   let category = req.body.category;
+  //   let userId = req.body.userId;
+  //   let imageUrl = req.body.image;
+  
+  //   try {
+  //       // Update the image URL in the Services collection
+  //       let serviceUpdate = await Service.updateOne(
+  //           { category: category, userId: userId }, 
+  //           { $set: req.body }
+  //       );
+  
+  //       // Update the image URL in the Users collection
+  //       let userUpdate = await User.updateOne(
+  //           { _id: userId }, 
+  //           { $set: { image: imageUrl } }
+  //       );
+  
+  //       if (serviceUpdate.matchedCount == 1 && userUpdate.matchedCount == 1) {
+  //           resp.send({ result: "Result successfully Updated" });
+  //       } else {
+  //           resp.send({ result: "Unsuccessful Updation" });
+  //       }
+  //   } catch (error) {
+  //       console.error('Error updating profile:', error);
+  //       resp.status(500).send('Failed to update profile');
+  //   }
+  // });
+
 //selete profile API
 app.delete("/Delete",async(req,resp)=>{
     let category = req.query.category;

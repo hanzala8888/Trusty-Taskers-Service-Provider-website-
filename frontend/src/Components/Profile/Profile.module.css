@@ -8,7 +8,7 @@
   color: #000000;
   font-size: 1.5rem;
   background-color: #fecaca;
-  margin-top: 93px;
+  margin-top: 85px;
 }
 
 
@@ -28,9 +28,10 @@
   width: 100%; /* Ensures card takes full width of the container */
 }
 
+
 .teamImg {
-  max-width: 400px;
-  height: auto; /* Adjust height to keep aspect ratio */
+  width: 400px;
+  height: 500px; /* Adjust height to keep aspect ratio */
   padding: 6px;
   background-color: #dedede;
   border-radius: 8px; /* Make it a rectangle instead of a circle */
@@ -109,7 +110,7 @@
 /* Media Queries for responsive design at width 1024px or less */
 @media (max-width: 1024px) {
   .main_heading{
-    margin-top: 105px;
+    margin-top: 85px;
   }
   .card {
     flex-direction: column; /* Stack items vertically */
