@@ -2,6 +2,7 @@ const express=require('express');
 require('./database/config');
 const User = require('./database/User');
 const Service = require('./database/Services');
+const Booking = require("./database/BookNow");
 //const bodyParser = require('body-parser');
 //const nodemailer = require('nodemailer');
 
@@ -139,6 +140,49 @@ app.put("/updateProfile",async(req,resp)=>{
   }
   });
 
+  //selete profile API
+app.delete("/Delete",async(req,resp)=>{
+  let category = req.query.category;
+  let userId = req.query.userId;
+
+  let data=  await Service.deleteOne({category:category,userId:userId})
+  console.log(data)
+  resp.send("Successfully Deleted")
+});
+
+  //Book Service
+app.post("/bookService", async (req, resp) => {
+  try {
+let category=req.body.category;
+let serviceProviderId=req.body.serviceProviderId;
+let serviceTakerId=req.body.serviceTakerId;
+
+const existingUser = await Booking.findOne({category,serviceProviderId,serviceTakerId})
+if (existingUser) {
+  return resp.send({
+    result: "You have Already Booked this service with this user with this service",
+  });
+}else{ 
+    console.log("Request Body:", req.body);
+    let booking = new Booking(req.body);
+    let result = await booking.save();
+    console.log("Saved Booking:", result);
+    resp.send(result);
+}
+  } catch (error) {
+    console.error("Error saving booking:", error);
+    resp.status(500).send({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/showBookedService",async(req,resp)=>{
+  let currentUser = req.query.userId;
+  let result = await Booking.find({serviceProviderId : currentUser});
+  if(result){
+    resp.send(result)
+  }
+})
+
 
   // app.put("/updateProfile", async (req, resp) => {
   //   let category = req.body.category;
@@ -168,18 +212,6 @@ app.put("/updateProfile",async(req,resp)=>{
   //       resp.status(500).send('Failed to update profile');
   //   }
   // });
-
-//selete profile API
-app.delete("/Delete",async(req,resp)=>{
-    let category = req.query.category;
-    let userId = req.query.userId;
-  
-    let data=  await Service.deleteOne({category:category,userId:userId})
-    console.log(data)
-    resp.send("Successfully Deleted")
-  });
-
-
   app.listen(4500);
 
 

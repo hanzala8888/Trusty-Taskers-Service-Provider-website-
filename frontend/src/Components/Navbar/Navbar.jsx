@@ -144,6 +144,8 @@ const Navbar = () => {
                             </Dropdown.Menu>
                         </Dropdown>
 
+                        <NavLink className="item activeStyle" to='/servicerequests'>Requests</NavLink>
+
                     </ul>
                     {auth ? (
                         <div className="profile-menu">

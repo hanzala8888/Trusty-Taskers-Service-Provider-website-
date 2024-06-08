@@ -15,7 +15,7 @@
     color: #000000;
     font-size: 1.5rem;
     margin-bottom: 30px;
-    margin-top: 93px;
+    margin-top: 85px;
     background-color: #fecaca;
   }
   .contact_form {
@@ -134,7 +134,7 @@
   @media screen and (max-width: 768px) {
     .main_heading{
         width: 100%;
-        margin-top: 107px;
+        margin-top: 105px;
         font-size: 1.2rem;
     }
     .form_control {
