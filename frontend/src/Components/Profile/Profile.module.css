@@ -192,8 +192,7 @@
   height: 350px; /* Adjust height to keep aspect ratio */
   border-radius: 50%;
   padding: 6px;
-  /* background-color: #dedede; */
-  background-color: #fecaca;
+  background-color: #dedede; 
   object-fit: cover;
   margin: 0 auto 50px; /* Center the image horizontally */
   margin-top: 10px;
