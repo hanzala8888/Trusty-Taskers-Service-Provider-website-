@@ -139,8 +139,6 @@ const BookingForm = () => {
           >
             <button onClick={handleBookService} className={styles.bookbtn} type="submit">Book Service</button>
           </div>
-
-          {/*<div>{name + " " + email + " " + text}</div>*/}
         </form>
       </div>
       <div className={styles.contact_image}>

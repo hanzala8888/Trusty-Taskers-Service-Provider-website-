@@ -163,14 +163,14 @@ if (existingUser) {
     result: "You have Already Booked this service with this user with this service",
   });
 }else{ 
-    console.log("Request Body:", req.body);
+    //console.log("Request Body:", req.body);
     let booking = new Booking(req.body);
     let result = await booking.save();
-    console.log("Saved Booking:", result);
+    //console.log("Saved Booking:", result);
     resp.send(result);
 }
   } catch (error) {
-    console.error("Error saving booking:", error);
+    //console.error("Error saving booking:", error);
     resp.status(500).send({ error: "Internal Server Error" });
   }
 });

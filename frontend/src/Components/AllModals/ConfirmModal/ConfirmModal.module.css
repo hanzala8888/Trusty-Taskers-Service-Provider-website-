@@ -26,11 +26,18 @@
 }
 
 .confirmBtn {
-    background-color: red;
+    background-color: #d01c28;
     color: white;
 }
 
 .cancelBtn {
     background-color: grey;
     color: white;
+}
+
+@media screen and (max-width: 420px) {
+    .modalBackdrop{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

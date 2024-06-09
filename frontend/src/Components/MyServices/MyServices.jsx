@@ -178,11 +178,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
-import styles from "./Profile.module.css";
+import styles from "./MyServices.module.css";
 import Footer from '../Footer/Footer';
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
+import ConfirmModal from '../AllModals/ConfirmModal/ConfirmModal';
 
-export const Profile = () => {
+export const MyServices = () => {
     const [userProfile, setUserProfile] = useState([]);
     const [showConfirm, setShowConfirm] = useState(false);
     const [deleteProfileId, setDeleteProfileId] = useState(null);
@@ -263,7 +263,7 @@ export const Profile = () => {
     return (
         <>
             <Navbar/>
-            <h1 className={styles.main_heading}>{JSON.parse(localStorage.getItem("loginusers")).name}'s PROFILE</h1>
+            <h1 className={styles.main_heading}>{JSON.parse(localStorage.getItem("loginusers")).name}'s SERVICES</h1>
             <div className={styles.section_white}>
                 {userProfile.length > 0 && (
                     <img
@@ -272,6 +272,7 @@ export const Profile = () => {
                         alt="profile-img"
                     />
                 )}
+                <hr/>
                 <div className={styles.formContainer}>
                     {userProfile.length > 0 ? (
                         userProfile.map((profile, index) => (
@@ -375,4 +376,4 @@ export const Profile = () => {
     );
 };
 
-export default Profile;
+export default MyServices;
