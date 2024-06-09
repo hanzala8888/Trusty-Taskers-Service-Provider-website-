@@ -129,6 +129,7 @@ const Navbar = () => {
                         <NavLink className="item activeStyle" to='/'>Home</NavLink>
                         <NavLink className="item activeStyle" to="/about">About</NavLink>
                         <NavLink className="item activeStyle" to="/contact">Contact Us</NavLink>
+                        <NavLink className="item activeStyle" to='/dashboard'>Dashboard</NavLink>
 
                         <Dropdown className="dropbtn" variant="link">
                             <Dropdown.Toggle
@@ -159,7 +160,7 @@ const Navbar = () => {
                             </Dropdown.Menu>
                         </Dropdown>
 
-                        <NavLink className="item activeStyle" to='/servicerequests'>Requests</NavLink>
+                        {/* <NavLink className="item activeStyle" to='/servicerequests'>Requests</NavLink> */}
 
                     </ul>
                     {auth ? (

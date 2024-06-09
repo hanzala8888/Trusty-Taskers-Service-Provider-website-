@@ -196,7 +196,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import styles from "./AddServices.module.css";
-import ServiceConfirmModal from "../AllModals/ServiceConfirmModal.jsx/ServiceConfirmModal";
+import ServiceConfirmModal from "../AllModals/ServiceConfirmModal/ServiceConfirmModal";
 
 const AddServices = () => {
   const [userId, setUserId] = useState("");
@@ -389,6 +389,7 @@ const AddServices = () => {
       </section>
       <ToastContainer />
       <Footer />
+      
       <ServiceConfirmModal 
         show={showConfirm} 
         onConfirm={handleConfirmAddService} 

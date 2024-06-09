@@ -151,37 +151,45 @@ app.delete("/Delete",async(req,resp)=>{
 });
 
   //Book Service
-app.post("/bookService", async (req, resp) => {
-  try {
-let category=req.body.category;
-let serviceProviderId=req.body.serviceProviderId;
-let serviceTakerId=req.body.serviceTakerId;
-
-const existingUser = await Booking.findOne({category,serviceProviderId,serviceTakerId})
-if (existingUser) {
-  return resp.send({
-    result: "You have Already Booked this service with this user with this service",
+  app.post("/bookService", async (req, resp) => {
+    try {
+      let category = req.body.category;
+      let serviceProviderId = req.body.serviceProviderId;
+      let serviceTakerId = req.body.serviceTakerId;
+  
+      // Log the received request body to debug missing fields
+      console.log("Received Request Body:", req.body);
+  
+      const existingUser = await Booking.findOne({ category, serviceProviderId, serviceTakerId });
+      if (existingUser) {
+        return resp.send({
+          result: "You have Already Booked this service with this user",
+        });
+      } else {
+        let bookingData = { ...req.body, currentStatus: "Pending" };
+        let booking = new Booking(bookingData);
+        let result = await booking.save();
+        resp.send(result);
+      }
+    } catch (error) {
+      console.error("Error saving booking:", error);
+      resp.status(500).send({ error: "Internal Server Error" });
+    }
   });
-}else{ 
-    //console.log("Request Body:", req.body);
-    let booking = new Booking(req.body);
-    let result = await booking.save();
-    //console.log("Saved Booking:", result);
-    resp.send(result);
-}
+//Show Booking's
+app.get("/showBookedService", async (req, res) => {
+  let currentUser = req.query.userId;
+  try {
+      let result = await Booking.find({ serviceTakerId: currentUser }); 
+      if (result) {
+          res.send(result);
+      } else {
+          res.status(404).send({ message: "No bookings found" });
+      }
   } catch (error) {
-    //console.error("Error saving booking:", error);
-    resp.status(500).send({ error: "Internal Server Error" });
+      res.status(500).send({ message: "Error fetching bookings" });
   }
 });
-
-app.get("/showBookedService",async(req,resp)=>{
-  let currentUser = req.query.userId;
-  let result = await Booking.find({serviceProviderId : currentUser});
-  if(result){
-    resp.send(result)
-  }
-})
 
 
   // app.put("/updateProfile", async (req, resp) => {

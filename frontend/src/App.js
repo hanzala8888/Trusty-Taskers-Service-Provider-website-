@@ -22,6 +22,7 @@ import UpdateProfile from './Components/Update Profile/UpdateProfile';
 
 import ServiceRequests from './Components/ServiceRequests/ServiceRequests';
 import MyBookings from './Components/MyBookings/MyBookings';
+import Dashboard from './Components/Dashboard/Dashboard';
 //import { Logout } from './Components/Logout component/Logout';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/updateprofile" element={<UpdateProfile/>} />
             <Route path="/servicerequests" element={<ServiceRequests/>} />
             <Route path="/mybookings" element={<MyBookings/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
            </Route>
 
             <Route path='*' element={<NotFound />} />
