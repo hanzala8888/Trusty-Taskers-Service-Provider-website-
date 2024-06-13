@@ -199,10 +199,10 @@ const Dashboard = () => {
               <i className="fa fa-screwdriver-wrench" style={{ marginRight: '10px' }}></i> My Services
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
-              <Dropdown.Item as={NavLink} to='/list-services' className={styles.dropdown_item}>
+              <Dropdown.Item as={NavLink} to='/services' className={styles.dropdown_item}>
                 List of services offered
               </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to='/add-service' className={styles.dropdown_item}>
+              <Dropdown.Item as={NavLink} to='/addservice' className={styles.dropdown_item}>
                 Add new services
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -216,12 +216,22 @@ const Dashboard = () => {
               <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Manage Bookings
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
-              <Dropdown.Item as={NavLink} to='/pending-requests' className={styles.dropdown_item}>
-                Pending Requests
-              </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to='/booking-requests' className={styles.dropdown_item}>
+            <Dropdown.Item as={NavLink} to='/mybookings' className={styles.dropdown_item}>
                 Booking Requests
               </Dropdown.Item>
+
+              <Dropdown.Item as={NavLink} to='/managerequests' className={styles.dropdown_item}>
+                Pending Requests
+              </Dropdown.Item>
+
+              <Dropdown.Item as={NavLink} to='/confirmedbookings' className={styles.dropdown_item}>
+                Confirmed Bookings
+              </Dropdown.Item>
+
+              <Dropdown.Item as={NavLink} to='/completedbookings' className={styles.dropdown_item}>
+                Completed Bookings
+              </Dropdown.Item>
+              
             </Dropdown.Menu>
           </Dropdown>
 

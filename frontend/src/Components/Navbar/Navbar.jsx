@@ -232,7 +232,7 @@ const Navbar = () => {
                                 <Dropdown.Item as={NavLink} to='/myservices'>
                                     My Services
                                 </Dropdown.Item>
-                                <Dropdown.Item as={NavLink} to='/mybookings'>
+                                {/* <Dropdown.Item as={NavLink} to='/mybookings'>
                                     My Bookings
                                 </Dropdown.Item>
                                 <Dropdown.Item as={NavLink} to='/confirmedbookings'>
@@ -240,7 +240,7 @@ const Navbar = () => {
                                 </Dropdown.Item>
                                 <Dropdown.Item as={NavLink} to='/managerequests'>
                                     Manage Requests
-                                </Dropdown.Item>
+                                </Dropdown.Item> */}
                             </Dropdown.Menu>
                         </Dropdown>
                     </ul>
