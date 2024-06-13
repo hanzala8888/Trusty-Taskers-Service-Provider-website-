@@ -57,6 +57,7 @@
     text-align: center;
     padding: 20px;
 }
+
 @media (max-width: 1000px) {
     .actionButton {
         margin-right: 5px;

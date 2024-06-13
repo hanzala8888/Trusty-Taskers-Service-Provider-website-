@@ -1,4 +1,4 @@
-/* .main_heading {
+.main_heading {
   padding: 30px 0;
   text-align: center;
   text-transform: uppercase;
@@ -164,7 +164,7 @@
   .cardBtn {
     width: 90%;
   }
-} */
+}
 
 .main_heading {
   padding: 30px 0;
