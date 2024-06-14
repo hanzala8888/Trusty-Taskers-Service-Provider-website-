@@ -39,50 +39,70 @@ const BookingForm = () => {
   const handleBookService = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
 
-    try {
-        let response = await fetch("http://localhost:4500/bookService", {
-            method: "POST",
-            body: JSON.stringify({
-                serviceTakerId,
-                serviceTakerName,
-                serviceTakerPhone,
-                serviceTakerImage,
-
-                serviceProviderId,
-                serviceProviderName,
-                serviceProviderPhone,
-                serviceProviderImage,
-
-                category,
-                address,
-                description,
-                date,
-                time,
-            }),
-            headers: { "Content-Type": "application/json" },
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        let result = await response.json();
-
-        if (
-            result.result === "You have Already Booked this service with this user"
-        ) {
-            toast.error(result.result);
-        } else {
-            toast.success("Service has been requested successfully!");
-            setTimeout(() => {
-                navigate("/services");
-            }, 2000); // Delay navigation to allow the toast message to be displayed
-        }
-    } catch (error) {
-        console.error("Error occurred during fetch:", error);
-        toast.error("An error occurred while requesting the service.");
+    if (!address) {
+      toast.error("Add any address for your service");
+      return;
     }
-};
+
+    if (!description) {
+      toast.error("Add description for your service");
+      return;
+    }
+
+    // if (!date) {
+    //   toast.error("Add suitable date for your service");
+    //   return;
+    // }
+
+    // if (!time) {
+    //   toast.error("Add suitable time for your service");
+    //   return;
+    // }
+
+
+
+    try {
+      let response = await fetch("http://localhost:4500/bookService", {
+        method: "POST",
+        body: JSON.stringify({
+          serviceTakerId,
+          serviceTakerName,
+          serviceTakerPhone,
+          serviceTakerImage,
+          serviceProviderId,
+          serviceProviderName,
+          serviceProviderPhone,
+          serviceProviderImage,
+          category,
+          address,
+          description,
+          date,
+          time,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      let result = await response.json();
+
+      if (
+        result.result === "You have Already Booked this service with this user"
+      ) {
+        toast.error(result.result);
+      } else {
+        toast.success("Service has been requested successfully!");
+        setTimeout(() => {
+          navigate("/services");
+        }, 2000); // Delay navigation to allow the toast message to be displayed
+      }
+    } catch (error) {
+      console.error("Error occurred during fetch:", error);
+      toast.error("An error occurred while requesting the service.");
+    }
+  };
 
   return (
     <>
@@ -117,9 +137,9 @@ const BookingForm = () => {
               <input
                 type="tel"
                 name="phone"
-                pattern="{3}-[0-9]{2}-[0-9]{3}"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 value={serviceProviderPhone}
-                required
+                readOnly
               />
             </div>
 
@@ -151,6 +171,7 @@ const BookingForm = () => {
               <input
                 type="text"
                 name="address"
+                value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
               />
@@ -161,6 +182,7 @@ const BookingForm = () => {
               <textarea
                 name="text"
                 rows="5"
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
               />
@@ -173,7 +195,11 @@ const BookingForm = () => {
                 marginBottom: "20px",
               }}
             >
-              <button onClick={handleBookService} className={styles.bookbtn} type="submit">
+              <button
+                onClick={handleBookService}
+                className={styles.bookbtn}
+                type="submit"
+              >
                 Book Service
               </button>
             </div>
