@@ -116,7 +116,7 @@ const BookingForm = () => {
               <input
                 type="text"
                 name="name"
-                value={serviceTakerName}
+                value={serviceProviderName}
                 readOnly
               />
             </div>
