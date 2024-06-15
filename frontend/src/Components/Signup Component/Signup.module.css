@@ -10,7 +10,7 @@
     background: #fecaca;
     border-radius: 20px;
     animation: fadeInUp 1s ease-out;
-    margin-top: 120px;
+    margin-top: 110px;
 }
 
 .text {
@@ -57,6 +57,7 @@
 }
 
 .input {
+    position: relative;
     display: flex;
     align-items: center;
     margin: auto;
@@ -80,6 +81,15 @@
     outline: none;
     color: #797979;
     font-size: 16px;
+}
+
+.eyeIcon {
+    position: absolute; /* Position the icon absolutely */
+    top: 50%; /* Center vertically */
+    right: 10px; /* Align to the right */
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer; /* Change cursor to pointer */
+    color: #999; /* Icon color */
 }
 
 .appButton {
@@ -163,6 +173,7 @@
     .signupContainer {
         width: 80%;
         margin-top: 140px;
+        margin-bottom: 50px;
     }
     .register {
         align-items: center;

@@ -216,13 +216,14 @@ app.get("/viewBookingDetails", async (req, res) => {
 
 
 //show all Booking's that are pending to Service Provider 
-app.get("/showBookingRequests",async(req,resp)=>{
+app.get("/showBookingRequestsConfirmed",async(req,resp)=>{
   let currentUser = req.query.userId;
-  let result = await Booking.find({serviceProviderId : currentUser,currentStatus : "Pending"});
+  let currentStatus=req.query.status;
+  let result = await Booking.find({serviceProviderId : currentUser,currentStatus : currentStatus});
   if(result){
     resp.send(result)
   }
-})
+});
 
 //show all Booking's that are ongoing
 app.get("/showBookingRequestsConfirmed",async(req,resp)=>{
@@ -231,7 +232,7 @@ app.get("/showBookingRequestsConfirmed",async(req,resp)=>{
   if(result){
     resp.send(result)
   }
-})
+});
 
 //Handling Accepting Request By Service Provider
 app.put("/handleBookingRequest", async (req, resp) => {

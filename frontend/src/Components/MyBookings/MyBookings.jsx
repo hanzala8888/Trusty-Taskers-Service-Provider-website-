@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './MyBookings.module.css';
 import Navbar from '../Navbar/Navbar';
 import BookingDetailsModal from '../AllModals/BookingDetailsModal/BookingDetailsModal';
+import Dashboard from '../Dashboard/Dashboard';
 
 const MyBookings = () => {
     const user = JSON.parse(localStorage.getItem("loginusers"));
@@ -11,6 +12,10 @@ const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null); // State to manage selected booking
     const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+
+    useEffect(() => {
+        document.title = "Trusty Taskers - My Bookings";
+    }, []);
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("loginusers"));
@@ -80,6 +85,7 @@ const MyBookings = () => {
     return (
         <>
             <Navbar />
+            <Dashboard/>
             <h1 className={styles.main_heading}>{userName}'s BOOKINGS</h1>
             <div className={styles.bookingsContainer}>
                 <table className={styles.bookingsTable}>

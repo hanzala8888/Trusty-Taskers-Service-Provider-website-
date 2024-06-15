@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import './AboutText.css';
 
 export const AboutText = () => {
@@ -26,11 +25,11 @@ export const AboutText = () => {
                         vision, ensuring top-notch leadership every step of the way!</p>
 
                     <div className="social-media">
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></Link>
-                        <a href="https://api.whatsapp.com/send?phone=03029428807" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100008339144475&mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                        <a href="https://x.com/aryan_ashiq05" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/m-ubaid555" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/m._ubaid555" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=03055630369" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -46,10 +45,10 @@ export const AboutText = () => {
                         with expertise, ensuring top-notch strategies every step!</p>
 
                     <div className="social-media">
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></Link>
+                        <a href="https://www.facebook.com/profile.php?id=100031170617953" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                        <a href="https://x.com/aryan_ashiq05" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/hanzala-javaid-30281722b" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/talhakhan_108" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
                         <a href="https://api.whatsapp.com/send?phone=03029428807" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -66,11 +65,11 @@ export const AboutText = () => {
                         dedication, ensuring top-notch management every step!</p>
 
                     <div className="social-media">
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></Link>
-                        <Link href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></Link>
-                        <a href="https://api.whatsapp.com/send?phone=03029428807" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/ladla.bacha.5661" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                        <a href="https://x.com/aryan_ashiq05" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/hanzala-javaid-30281722b" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/hanzala_awan_18" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=03440099627" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>

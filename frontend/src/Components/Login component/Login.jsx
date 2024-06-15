@@ -100,6 +100,7 @@ import password_icon from '../Assets/password.png';
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -110,7 +111,7 @@ export const Login = () => {
     }, [navigate]);
 
     useEffect(() => {
-        document.title = "Trusty Tasker - Login";
+        document.title = "Trusty Taskers - Login";
     }, []);
 
     const handleLogin = async () => {
@@ -151,6 +152,9 @@ export const Login = () => {
             toast.error("Something went wrong. Please try again later.");
         }
     }
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
 
     return (
         <>
@@ -174,10 +178,14 @@ export const Login = () => {
                             <div className={styles.input}>
                                 <img src={password_icon} alt='' className={styles.inputImg} />
                                 <input className={styles.inputBox}
-                                    type='password'
+                                    type={showPassword ? 'text' : 'password'}
                                     placeholder='Enter Password'
                                     onChange={(e) => setPassword(e.target.value)}
                                     value={password} />
+                                <i 
+                                    className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'} ${styles.eyeIcon}`}
+                                    onClick={togglePasswordVisibility}
+                                ></i>
                             </div>
                         </div>
 

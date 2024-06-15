@@ -128,6 +128,7 @@ import styles from './ConfirmedBookings.module.css';
 import Navbar from '../Navbar/Navbar';
 import PendingDetailsModal from '../AllModals/PendingDetailsModal/PendingDetailsModal';
 import CompleteBookingModal from '../AllModals/CompleteBookingModal/CompleteBookingModal';
+import Dashboard from '../Dashboard/Dashboard';
 
 const ConfirmedBookings = () => {
     const user = JSON.parse(localStorage.getItem("loginusers"));
@@ -141,6 +142,10 @@ const ConfirmedBookings = () => {
     const [bookingToComplete, setBookingToComplete] = useState(null); // State to manage booking to be completed
 
     useEffect(() => {
+        document.title = "Trusty Taskers - Confirmed Bookings";
+    }, []);
+
+    useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("loginusers"));
         if (storedUser && storedUser._id) {
             setUserId(storedUser._id);
@@ -150,7 +155,7 @@ const ConfirmedBookings = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                let response = await fetch(`http://localhost:4500/showBookingRequestsConfirmed?userId=${userId}`, {
+                let response = await fetch(`http://localhost:4500/showBookingRequestsConfirmed?userId=${userId}&status=Confirmed`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -162,7 +167,6 @@ const ConfirmedBookings = () => {
                 console.error("Error fetching bookings:", error);
             }
         };
-
         if (userId) {
             fetchBookings();
         }
@@ -224,6 +228,7 @@ const ConfirmedBookings = () => {
     return (
         <>
             <Navbar />
+            <Dashboard/>
             <h1 className={styles.main_heading}>{userName}'s Ongoing Services</h1>
             <div className={styles.bookingsContainer}>
                 <table className={styles.bookingsTable}>

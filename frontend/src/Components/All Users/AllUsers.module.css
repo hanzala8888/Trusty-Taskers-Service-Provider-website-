@@ -122,7 +122,7 @@ body {
     padding: 20px 0;
     font-size: 1.2rem;
     margin-bottom: 15px;
-    margin-top: 105px;
+    margin-top: 88px;
   }
   .card {
     width: 80%;
@@ -141,6 +141,12 @@ body {
     color: #d01c28;
     margin-top: 120px;
     margin-bottom: 120px;
+  }
+}
+
+@media (max-width: 450px) {
+  .heading_style {
+    margin-top: 85px;
   }
 }
 

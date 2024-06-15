@@ -1,9 +1,12 @@
 // Filename - NotFound.js
-import React from 'react';
+import {React, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './NotFound.css'; // Import your custom CSS
 
 const NotFound = () => {
+    useEffect(() => {
+        document.title = "Trusty Taskers - Error 404";
+      }, []);
  return (
     <div className="not-found">
        <img src='Images/error-404.png' alt="404 Not Found" className="not-found-image" />

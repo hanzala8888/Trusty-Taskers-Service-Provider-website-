@@ -3,6 +3,7 @@ import styles from './ManageRequests.module.css';
 import Navbar from '../Navbar/Navbar';
 import PendingDetailsModal from '../AllModals/PendingDetailsModal/PendingDetailsModal';
 import RequestConfirmModal from '../AllModals/RequestConfirmModal/RequestConfirmModal';
+import Dashboard from '../Dashboard/Dashboard';
 
 const ManageRequests = () => {
     const user = JSON.parse(localStorage.getItem("loginusers"));
@@ -16,6 +17,10 @@ const ManageRequests = () => {
     const [bookingToConfirm, setBookingToConfirm] = useState(null); // State to manage booking to be confirmed
 
     useEffect(() => {
+        document.title = "Trusty Taskers - Pending Requests";
+    }, []);
+
+    useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("loginusers"));
         if (storedUser && storedUser._id) {
             setUserId(storedUser._id);
@@ -25,7 +30,7 @@ const ManageRequests = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                let response = await fetch(`http://localhost:4500/showBookingRequests?userId=${userId}`, {
+                let response = await fetch(`http://localhost:4500/showBookingRequestsConfirmed?userId=${userId}&status=Pending`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -37,7 +42,6 @@ const ManageRequests = () => {
                 console.error("Error fetching bookings:", error);
             }
         };
-
         if (userId) {
             fetchBookings();
         }
@@ -99,6 +103,7 @@ const ManageRequests = () => {
     return (
         <>
             <Navbar />
+            <Dashboard/>
             <h1 className={styles.main_heading}>{userName}'s PENDING REQUESTS</h1>
             <div className={styles.bookingsContainer}>
                 <table className={styles.bookingsTable}>

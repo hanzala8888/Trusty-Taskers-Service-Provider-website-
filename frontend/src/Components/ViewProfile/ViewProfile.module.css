@@ -137,7 +137,7 @@
 
 @media (max-width: 768px) {
   .main_heading{
-    margin-top: 105px;
+    margin-top: 90px;
   }
   .card {
     flex-direction: column; 
@@ -163,5 +163,11 @@
 
   .cardBtn {
     width: 90%;
+  }
+}
+
+@media (max-width: 540px) {
+  .main_heading{
+    margin-top: 87px;
   }
 }

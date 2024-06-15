@@ -25,7 +25,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import ViewProfile from './Components/ViewProfile/ViewProfile';
 import ManageRequests from './Components/ManageRequests/ManageRequests';
 import ConfirmedBookings from './Components/ConfirmedBookings/ConfirmedBookings';
-//import { Logout } from './Components/Logout component/Logout';
+import CompletedBookings from './Components/CompletedBookings/CompletedBookings';
 
 function App() {
   
@@ -35,6 +35,8 @@ function App() {
         <Routes>
            {/* Wrap the protected routes with the PrivateComponent */}
            <Route element={<PrivateComponent />}>
+            
+           </Route>
             <Route path='/contact' element={<ContactUs/>}/>
             <Route path='/services' element={<Services/>}/>
             <Route path='/paymentform' element={<Paymentform/>}/>
@@ -52,7 +54,9 @@ function App() {
             <Route path="/profile" element={<ViewProfile/>} />
             <Route path="/managerequests" element={<ManageRequests/>} />
             <Route path="/confirmedbookings" element={<ConfirmedBookings/>} />
-           </Route>
+            <Route path="/completedbookings" element={<CompletedBookings/>} />
+
+
 
             <Route path='*' element={<NotFound />} />
             <Route path='/' exact element={<Herosec/>}/>

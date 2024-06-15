@@ -148,12 +148,17 @@ h2 {
 }
 @media screen and (max-width: 768px) {
   .heading_styles {
-    margin-top: 105px;
+    margin-top: 90px;
   }
   .card_container{
     display: flex;
     justify-content: center;
     
+  }
+}
+@media screen and (max-width: 540px) {
+  .heading_styles {
+    margin-top: 87px;
   }
 }
 @media screen and (min-width: 1250px) and (max-width: 1556px) {

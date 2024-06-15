@@ -1,147 +1,4 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import Navbar from '../Navbar/Navbar';
-// import Footer from '../Footer/Footer';
-// import './Dashboard.css';
-
-// const Dashboard = () => {
-//   return (
-//     <>
-//     <Navbar />
-//     <div className="dashboard">
-//       <div className="sidebar">
-//         <div className="items">
-//         <Dropdown className="icon" title={<><i class="fa-solid fa-file"></i> Overview</>}>
-//           <DropdownItem text="Summary of services" link="/summary" />
-//           <DropdownItem text="Bookings" link="/bookings" />
-//         </Dropdown>
-
-//         <Dropdown title={<><i class="fa-solid fa-screwdriver-wrench"></i> My Services</>}>
-//           <DropdownItem text="List of services offered" link="/services" />
-//           <DropdownItem text="Add New Service" link="/add-service" />
-//         </Dropdown>
-
-//         <Dropdown title={<><i className="fa fa-book"></i> Manage Bookings</>}>
-//           <DropdownItem text="My Bookings" link="/my-bookings" />
-//           <DropdownItem text="Pending Requests" link="/pending-requests" />
-//           <DropdownItem text="Booking Requests" link="/booking-requests" />
-//         </Dropdown>
-        
-//         <Dropdown title={<><i className="fa fa-user"></i> Profile Management</>}>
-//           <DropdownItem text="View Profile" link="/profile" />
-//           <DropdownItem text="Account Settings" link="/account-settings" />
-//         </Dropdown>
-
-//         <Link to="/notifications" className="menu-item">
-//         <i className="fa fa-bell"></i>Notifications
-//         </Link>
-//         </div>
-//       </div>
-//       <div className="content">
-//         <h1>Welcome to your Dashboard</h1>
-//       </div>
-//     </div>
-//     <Footer/>
-//     </>
-//   );
-// };
-
-// const Dropdown = ({ title, children }) => {
-//   const [open, setOpen] = React.useState(false);
-
-//   return (
-//     <div className="dropdown">
-//       <button className={`dropdown-btn ${open ? 'active' : ''}`} onClick={() => setOpen(!open)}>
-//         {title}
-//       </button>
-//       {open && <div className="dropdown-content">{children}</div>}
-//     </div>
-//   );
-// };
-
-// const DropdownItem = ({ text, link }) => {
-//   return (
-//     <Link to={link} className="dropdown-item">
-//       {text}
-//     </Link>
-//   );
-// };
-
-// export default Dashboard;
-
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import Navbar from '../Navbar/Navbar';
-// import Footer from '../Footer/Footer';
-// import './Dashboard.css';
-
-// const Dashboard = () => {
-//   return (
-//     <>
-//       <Navbar />
-//       <div className="dashboard">
-//         <div className="sidebar">
-//           <div className="items">
-//             <Dropdown title={<><i className="fa-solid fa-file"></i> Overview</>}>
-//               <DropdownItem text="Summary of services" link="/summary" />
-//               <DropdownItem text="Bookings" link="/bookings" />
-//             </Dropdown>
-
-//             <Dropdown title={<><i className="fa-solid fa-screwdriver-wrench"></i> My Services</>}>
-//               <DropdownItem text="List of services offered" link="/services" />
-//               <DropdownItem text="Add New Service" link="/add-service" />
-//             </Dropdown>
-
-//             <Dropdown title={<><i className="fa fa-book"></i> Manage Bookings</>}>
-//               <DropdownItem text="My Bookings" link="/my-bookings" />
-//               <DropdownItem text="Pending Requests" link="/pending-requests" />
-//               <DropdownItem text="Booking Requests" link="/booking-requests" />
-//             </Dropdown>
-
-//             <Dropdown title={<><i className="fa fa-user"></i> Profile Management</>}>
-//               <DropdownItem text="View Profile" link="/profile" />
-//               <DropdownItem text="Account Settings" link="/account-settings" />
-//             </Dropdown>
-
-//             <Link to="/notifications" className="menu-item">
-//               <i className="fa fa-bell"></i>Notifications
-//             </Link>
-//           </div>
-//         </div>
-//         <div className="content">
-//           <h1>Welcome to your Dashboard</h1>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// };
-
-// const Dropdown = ({ title, children }) => {
-//   const [open, setOpen] = React.useState(false);
-
-//   return (
-//     <div className="dropdown">
-//       <button className={`dropdown-btn ${open ? 'active' : ''}`} onClick={() => setOpen(!open)}>
-//         {title} <i className={`fa ${open ? 'fa-angle-up' : 'fa-angle-down'}`} style={{ marginLeft: 'auto' }}></i>
-//       </button>
-//       {open && <div className="dropdown-content">{children}</div>}
-//     </div>
-//   );
-// };
-
-// const DropdownItem = ({ text, link }) => {
-//   return (
-//     <Link to={link} className="dropdown-item">
-//       {text}
-//     </Link>
-//   );
-// };
-
-// export default Dashboard;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styles from './Dashboard.module.css';
 import { NavLink } from 'react-router-dom';
@@ -153,6 +10,9 @@ const Dashboard = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  useEffect(() => {
+    document.title = "Trusty Taskers - Dashboard";
+}, []);
 
   return (
     <>
@@ -168,7 +28,7 @@ const Dashboard = () => {
               </>
             ) : (
               <>
-                <i className="fa fa-bars" style={{ marginRight: '10px' }}></i> MENU
+                <i className="fa fa-bars" style={{ marginRight: '10px' }}></i> DASHBOARD MENU
               </>
             )}
           </button>

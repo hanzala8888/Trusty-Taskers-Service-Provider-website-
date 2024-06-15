@@ -27,6 +27,10 @@ const BookingForm = () => {
   } = location.state || {};
 
   useEffect(() => {
+    document.title = "Trusty Taskers - Booking Form";
+  }, []);
+
+  useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("loginusers"));
     if (userData) {
       setServiceTakerId(userData._id);
@@ -58,8 +62,6 @@ const BookingForm = () => {
     //   toast.error("Add suitable time for your service");
     //   return;
     // }
-
-
 
     try {
       let response = await fetch("http://localhost:4500/bookService", {
