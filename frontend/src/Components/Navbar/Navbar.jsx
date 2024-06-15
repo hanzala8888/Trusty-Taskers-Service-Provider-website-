@@ -198,7 +198,7 @@ const Navbar = () => {
                                     View Services
                                 </Dropdown.Item>
                                 <Dropdown.Item as={NavLink} to='/addservice'>
-                                    <i className="fa fa-plus"></i>
+                                    <i className="fa fa-plus-circle"></i>
                                     Add Services
                                 </Dropdown.Item>
                             </Dropdown.Menu>

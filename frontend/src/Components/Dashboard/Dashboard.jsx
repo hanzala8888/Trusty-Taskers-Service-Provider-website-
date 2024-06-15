@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import styles from './Dashboard.module.css';
 import { NavLink } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -10,19 +10,19 @@ const Dashboard = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
   useEffect(() => {
     document.title = "Trusty Taskers - Dashboard";
-}, []);
+  }, []);
 
   return (
     <>
       <Navbar />
-       
       <div className={styles.dashboard}>
         <nav className={`${styles.navbar} ${showMenu ? styles.showMenu : ''}`}>
           {/* Toggle button for small screens */}
           <button className={styles.menuButton} onClick={toggleMenu}>
-          {showMenu ? (
+            {showMenu ? (
               <>
                 <i className="fa fa-times" style={{ marginRight: '10px' }}></i> CLOSE
               </>
@@ -43,10 +43,10 @@ const Dashboard = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
               <Dropdown.Item as={NavLink} to='/summary-services' className={styles.dropdown_item}>
-                Summary of services
+                <i className="fa fa-list-alt" style={{ marginRight: '10px' }}></i> Summary of services
               </Dropdown.Item>
               <Dropdown.Item as={NavLink} to='/mybookings' className={styles.dropdown_item}>
-                Bookings
+                <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Bookings
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -60,10 +60,10 @@ const Dashboard = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
               <Dropdown.Item as={NavLink} to='/services' className={styles.dropdown_item}>
-                List of services offered
+                <i className="fa fa-list-ul" style={{ marginRight: '10px' }}></i> List of services offered
               </Dropdown.Item>
               <Dropdown.Item as={NavLink} to='/addservice' className={styles.dropdown_item}>
-                Add new services
+                <i className="fa fa-plus-circle" style={{ marginRight: '10px' }}></i> Add new services
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -76,22 +76,18 @@ const Dashboard = () => {
               <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Manage Bookings
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
-            <Dropdown.Item as={NavLink} to='/mybookings' className={styles.dropdown_item}>
-                Booking Requests
+              <Dropdown.Item as={NavLink} to='/mybookings' className={styles.dropdown_item}>
+                <i className="fa fa-list" style={{ marginRight: '10px' }}></i> Booking Requests
               </Dropdown.Item>
-
               <Dropdown.Item as={NavLink} to='/managerequests' className={styles.dropdown_item}>
-                Pending Requests
+                <i className="fa fa-clock" style={{ marginRight: '10px' }}></i> Pending Requests
               </Dropdown.Item>
-
               <Dropdown.Item as={NavLink} to='/confirmedbookings' className={styles.dropdown_item}>
-                Confirmed Bookings
+                <i className="fa fa-check-circle" style={{ marginRight: '10px' }}></i> Confirmed Bookings
               </Dropdown.Item>
-
               <Dropdown.Item as={NavLink} to='/completedbookings' className={styles.dropdown_item}>
-                Completed Bookings
+                <i className="fa fa-check-square" style={{ marginRight: '10px' }}></i> Completed Bookings
               </Dropdown.Item>
-              
             </Dropdown.Menu>
           </Dropdown>
 
@@ -104,21 +100,16 @@ const Dashboard = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className={styles.dropdownMenuCustom}>
               <Dropdown.Item as={NavLink} to='/profile' className={styles.dropdown_item}>
-                View Profile
+                <i className="fa fa-user nav-icon" style={{ marginRight: '10px' }}></i> View Profile
               </Dropdown.Item>
               <Dropdown.Item as={NavLink} to='/account-settings' className={styles.dropdown_item}>
-                Account Settings
+                <i className="fa fa-cog" style={{ marginRight: '10px' }}></i> Account Settings
               </Dropdown.Item>
               <Dropdown.Item as={NavLink} to='/notifications' className={styles.dropdown_item}>
-                Notifications
+                <i className="fa fa-bell" style={{ marginRight: '10px' }}></i> Notifications
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
-          
-          {/* <NavLink to='/notifications' className={`${styles.navbarItem} ${styles.notificationLink}`}>
-            <i className="fa fa-bell" style={{ marginRight: '10px' }}></i> Notifications
-          </NavLink> */}
         </nav>
       </div>
     </>
@@ -126,5 +117,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-

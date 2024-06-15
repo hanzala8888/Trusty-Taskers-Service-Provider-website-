@@ -119,6 +119,10 @@ const AllUsers = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = "Trusty Taskers - Providers List";
+  }, []);
+
   // Fetch userId from localStorage when the component mounts
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("loginusers"));

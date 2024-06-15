@@ -73,6 +73,7 @@
   .navbar {
     justify-content: center;
     margin-top: 91px;
+    align-items: center;
   }
 
   .dropbtn {
@@ -102,7 +103,6 @@
   .navbarItem {
     display: none;
     margin: auto;
-
   }
 
   .showMenu .navbarItem {
