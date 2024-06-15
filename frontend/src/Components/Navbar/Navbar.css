@@ -12,7 +12,6 @@
     margin-right: 5px; 
 }
 
-
 nav {
     display: flex;
     align-items: center;
@@ -123,7 +122,6 @@ a {
     font-weight: 500;
     padding-top: 15px;
 }
-
 
 .mainbtn:hover{
     background-color: #d01c28;
@@ -282,9 +280,11 @@ a {
         cursor: pointer;
     }
     .profile-menu {
-        transform: translateY(7%); /* Adjust for center alignment */
+        transform: translateY(7%); 
     }
-    
+    .dropdown-menu-custom{
+        margin-top: 0px;
+    }
 }
 
 @media screen and (max-width: 400px) {
