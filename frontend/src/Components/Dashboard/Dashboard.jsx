@@ -109,15 +109,17 @@ const Dashboard = () => {
               <Dropdown.Item as={NavLink} to='/account-settings' className={styles.dropdown_item}>
                 Account Settings
               </Dropdown.Item>
+              <Dropdown.Item as={NavLink} to='/notifications' className={styles.dropdown_item}>
+                Notifications
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
-          {/* Notification link inside the menu */}
-          <NavLink to='/notifications' className={`${styles.navbarItem} ${styles.notificationLink}`}>
+          
+          {/* <NavLink to='/notifications' className={`${styles.navbarItem} ${styles.notificationLink}`}>
             <i className="fa fa-bell" style={{ marginRight: '10px' }}></i> Notifications
-          </NavLink>
+          </NavLink> */}
         </nav>
-        {/* <h1 className={styles.main_heading}>{userName}'s DASHBOARD</h1> */}
       </div>
     </>
   );
