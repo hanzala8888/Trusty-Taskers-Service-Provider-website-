@@ -138,7 +138,7 @@ export const Login = () => {
                 localStorage.setItem("loginusers", JSON.stringify(result));
                 toast.success("Login successful! Redirecting...");
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/overview');
                 }, 1000); // Redirect after 2 seconds
             } else if (response.status === 404) {
                 toast.error("This user is not registered");

@@ -21,7 +21,7 @@ const Dashboard = () => {
       <div className={styles.dashboard}>
         <nav className={`${styles.navbar} ${showMenu ? styles.showMenu : ''}`}>
           {/* Toggle button for small screens */}
-          <button className={styles.menuButton} onClick={toggleMenu}>
+          <button className={`${styles.menuButton} ${showMenu ? styles.closeButton : ''}`} onClick={toggleMenu}>
             {showMenu ? (
               <>
                 <i className="fa fa-times" style={{ marginRight: '10px' }}></i> CLOSE
@@ -34,7 +34,7 @@ const Dashboard = () => {
           </button>
 
           {/* Dropdown menus */}
-          <Dropdown className={styles.dropbtn} variant="link">
+          {/* <Dropdown className={styles.dropbtn} variant="link">
             <Dropdown.Toggle
               className={styles.mainbtn}
               style={{ backgroundColor: '#d01c28', color: 'white', border: 'none' }}
@@ -49,7 +49,11 @@ const Dashboard = () => {
                 <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Bookings
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
+
+          <NavLink to='/overview' className={`${styles.navbarItem} ${styles.notificationLink}`}>
+              <i className="fa fa-file" style={{ marginRight: '10px' }}></i> Overview
+          </NavLink> 
 
           <Dropdown className={styles.dropbtn} variant="link">
             <Dropdown.Toggle
@@ -110,6 +114,10 @@ const Dashboard = () => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+
+           {/* <NavLink to='/notifications' className={`${styles.navbarItem} ${styles.notificationLink}`}>
+        <i className="fa fa-bell" style={{ marginRight: '10px' }}></i> Notifications
+      </NavLink> */}
         </nav>
       </div>
     </>

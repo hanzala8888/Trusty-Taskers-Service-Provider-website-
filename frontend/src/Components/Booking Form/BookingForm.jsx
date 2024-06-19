@@ -40,6 +40,12 @@ const BookingForm = () => {
     }
   }, []);
 
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value; // This will be in YYYY-MM-DD format
+    const formattedDate = selectedDate.split("T")[0]; 
+    setDate(formattedDate); // Update the state with the formatted date
+  };
+
   const handleBookService = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
 
@@ -53,10 +59,10 @@ const BookingForm = () => {
       return;
     }
 
-    // if (!date) {
-    //   toast.error("Add suitable date for your service");
-    //   return;
-    // }
+    if (!date) {
+      toast.error("Add suitable date for your service");
+      return;
+    }
 
     // if (!time) {
     //   toast.error("Add suitable time for your service");
@@ -152,7 +158,7 @@ const BookingForm = () => {
                 name="date"
                 value={date}
                 min={new Date().toISOString().split("T")[0]}
-                onChange={(e) => setDate(e.target.value)}
+                onChange={handleDateChange}
                 required
               />
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import logo from './logo1.jpeg';
@@ -11,28 +11,10 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [userImage, setUserImage] = useState(null);
     const [clicked, setClicked] = useState(false);
-    const navbarRef = useRef(null); 
 
     const handleClick = () => {
         setClicked(!clicked);
     };
-
-    useEffect(() => {
-        // Function to close navbar when clicking outside
-        const closeNavbar = (event) => {
-            if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-                setClicked(false);
-            }
-        };
-
-        // Add event listener when component mounts
-        document.addEventListener('mousedown', closeNavbar);
-
-        // Clean up event listener when component unmounts
-        return () => {
-            document.removeEventListener('mousedown', closeNavbar);
-        };
-    }, []);
 
     useEffect(() => {
         if (auth) {
@@ -58,7 +40,7 @@ const Navbar = () => {
     return (
         <>
             <nav>
-                <div className="nav" ref={navbarRef}>
+                <div className="nav">
                     <NavLink className="logo item inActiveStyle">
                         <NavLink to="/"><img src={logo} alt="My Logo" width="85" height="41" /></NavLink>
                     </NavLink>
@@ -75,7 +57,7 @@ const Navbar = () => {
                             <i className="fa fa-phone nav-icon"></i>
                             Contact Us
                         </NavLink>
-                        <NavLink className="item activeStyle" to='/dashboard'>
+                        <NavLink className="item activeStyle" to='/overview'>
                             <i className="fa fa-chart-bar nav-icon"></i>
                             Dashboard
                         </NavLink>
