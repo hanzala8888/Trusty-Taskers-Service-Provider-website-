@@ -28,6 +28,7 @@ import ConfirmedBookings from './Components/ConfirmedBookings/ConfirmedBookings'
 import CompletedBookings from './Components/CompletedBookings/CompletedBookings';
 import Overview from './Components/Overview/Overview';
 import RescheduleBooking from './Components/Reschedule Booking/RescheduleBooking';
+import PasswordUpdate from './Components/PasswordUpdate/PasswordUpdate';
 
 function App() {
   
@@ -57,6 +58,7 @@ function App() {
             <Route path="/completedbookings" element={<CompletedBookings/>} />
             <Route path="/overview" element={<Overview/>} />
             <Route path="/reschedulebooking" element={<RescheduleBooking/>} />
+            <Route path="/accountsettings" element={<PasswordUpdate/>} />
            </Route>
 
             <Route path='*' element={<NotFound />} />

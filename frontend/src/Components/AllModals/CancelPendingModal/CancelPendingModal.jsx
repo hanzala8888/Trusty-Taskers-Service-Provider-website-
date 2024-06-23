@@ -1,5 +1,3 @@
-// CancelPendingServiceModal.jsx
-
 import React, { useEffect } from 'react';
 import styles from './CancelPendingModal.module.css';
 
