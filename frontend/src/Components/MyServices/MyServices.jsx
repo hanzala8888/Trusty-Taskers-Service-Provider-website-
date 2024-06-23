@@ -22,7 +22,7 @@ export const MyServices = () => {
 
     const showProfileDetail = async () => {
         const userId = JSON.parse(localStorage.getItem("loginusers"))._id;
-        let result = await fetch(`http://localhost:4500/showProfile?userId=${userId}`, {
+        let result = await fetch(`http://localhost:4500/showServices?userId=${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

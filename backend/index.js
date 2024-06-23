@@ -379,11 +379,33 @@ app.get("/services", async (req, resp) => {
   } 
 });
 
-app.get("/showProfile", async(req,resp)=>{
-    let user = req.query.userId;
-    let result = await Service.find({userId : user});
-    resp.send(result)
-})
+// app.get("/showProfile", async(req,resp)=>{
+//     let user = req.query.userId;
+//     let result = await Service.find({userId : user});
+//     resp.send(result)
+// });
+
+app.get("/showServices", async(req,resp)=>{
+  let user = req.query.userId;
+  let result = await Service.find({userId : user});
+  resp.send(result)
+});
+app.get("/showProfile", async (req, resp) => {
+  const userId = req.query.userId; // Assuming userId is passed as a query parameter
+
+  try {
+      const userProfile = await User.findOne({ _id: userId });
+
+      if (!userProfile) {
+          return resp.status(404).json({ error: "User profile not found" });
+      }
+
+      resp.json(userProfile);
+  } catch (error) {
+      resp.status(500).json({ error: error.message });
+  }
+});
+
 
 app.put("/updateProfile",async(req,resp)=>{
   let category = req.body.category;
@@ -406,32 +428,6 @@ app.delete("/Delete",async(req,resp)=>{
   resp.send("Successfully Deleted")
 })
 
-//Book a new Service
-// app.post("/bookService", async (req, resp) => {
-//   try {
-// let category=req.body.category;
-// let serviceProviderId=req.body.serviceProviderId;
-// let serviceTakerId=req.body.serviceTakerId;
-
-// const existingUser = await Booking.findOne({category,serviceProviderId,serviceTakerId})
-// if (existingUser) {
-//   return resp.send({
-//     result: "You have Already Booked this service with this user",
-//   });
-// }else{ 
-//   let bookingData = {...req.body,currentStatus:"Pending"}
-//     console.log("Request Body:", req.body);
-//     let booking = new Booking(bookingData);
-//     let result = await booking.save();
-//     console.log("Saved Booking:", result);
-//     resp.send(result);
-// }
-//   } catch (error) {
-//     console.error("Error saving booking:", error);
-//     resp.status(500).send({ error: "Internal Server Error" });
-//   }
-// });
-
 app.post("/bookService", async (req, resp) => {
   try {
     let category = req.body.category;
@@ -439,12 +435,22 @@ app.post("/bookService", async (req, resp) => {
     let serviceTakerId = req.body.serviceTakerId;
     
     const existingUser = await Booking.findOne({ category, serviceProviderId, serviceTakerId });
-    if (existingUser) {
-      return resp.send({
-        result: "You have Already Booked this service with this user",
-      });
-    } else {
+    if(existingUser){
+      if (existingUser.currentStatus=="Pending" || existingUser.currentStatus=="Confirmed") {
+        return resp.send({
+          result: "You have Already Booked this service with this user",
+        });
+      }
+      else {
      
+        let bookingData = { ...req.body, currentStatus: "Pending"};
+        let booking = new Booking(bookingData);
+        await updateCount("Pending");
+        let result = await booking.save();
+        resp.send(result);
+      }
+    }
+     else {
       let bookingData = { ...req.body, currentStatus: "Pending"};
       let booking = new Booking(bookingData);
       await updateCount("Pending");
@@ -456,7 +462,6 @@ app.post("/bookService", async (req, resp) => {
     resp.status(500).send({ error: "Internal Server Error" });
   }
 });
-
 
 //Show Booking's
 app.get("/viewBookingDetails", async (req, res) => {
@@ -497,6 +502,19 @@ app.put("/handleBookingRequest", async (req, resp) => {
   }
 });
 
+app.put("/updateBooking",async(req,resp)=>{
+  console.log("welcome in update boking")
+  let bookingId = req.body._id;
+  console.log(bookingId)
+  let result=  await Booking.updateOne(
+    {_id:bookingId},{$set:req.body}
+)
+console.group(result);
+if(result.matchedCount==1){
+  resp.send({ result: "Result successfully Updated" });
+}
+})
+
 //Overview overall Services on the app 
 app.get("/overview",async(req,resp)=>{
   let result = await Counter.find();
@@ -505,6 +523,12 @@ app.get("/overview",async(req,resp)=>{
     resp.send(result)
   }
 })
+
+app.get("/overviewProfile", async(req,resp)=>{
+  let user = req.query.userId;
+  let result = await User.find({_id : user});
+  resp.send(result)
+});
 
 app.listen(4500);
 

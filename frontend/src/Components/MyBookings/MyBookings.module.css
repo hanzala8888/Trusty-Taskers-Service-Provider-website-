@@ -10,6 +10,12 @@
     margin-top: 157px;
     margin-bottom: 60px;
 }
+.statusHeader{
+    text-align: center;
+    padding: 15px;
+    background-color: #fecaca;
+    border-bottom: 1px solid #000000;
+}
 
 .bookingsContainer {
     width: 90%;
@@ -21,6 +27,7 @@
     width: 80%;
     border-collapse: collapse;
     margin: auto;
+    margin-bottom: 50px;
 }
 
 .tableRow {

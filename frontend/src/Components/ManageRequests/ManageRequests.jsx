@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ManageRequests.module.css';
 import Navbar from '../Navbar/Navbar';
+import CancelPendingModal from '../AllModals/CancelPendingModal/CancelPendingModal';
 import PendingDetailsModal from '../AllModals/PendingDetailsModal/PendingDetailsModal';
 import RequestConfirmModal from '../AllModals/RequestConfirmModal/RequestConfirmModal';
 import Dashboard from '../Dashboard/Dashboard';
@@ -15,10 +16,7 @@ const ManageRequests = () => {
     const [showModal, setShowModal] = useState(false); // State to manage details modal visibility
     const [showConfirmModal, setShowConfirmModal] = useState(false); // State to manage confirm modal visibility
     const [bookingToConfirm, setBookingToConfirm] = useState(null); // State to manage booking to be confirmed
-
-    useEffect(() => {
-        document.title = "Trusty Taskers - Pending Requests";
-    }, []);
+    const [showCancelModal, setShowCancelModal] = useState(false); // State to manage cancel modal visibility
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("loginusers"));
@@ -42,6 +40,7 @@ const ManageRequests = () => {
                 console.error("Error fetching bookings:", error);
             }
         };
+
         if (userId) {
             fetchBookings();
         }
@@ -55,15 +54,41 @@ const ManageRequests = () => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                     body: JSON.stringify({ status: 'Confirmed' })
+                    body: JSON.stringify({ status: 'Confirmed' })
                 });
-    
+
                 if (!update.ok) {
                     throw new Error('Network response was not ok');
                 }
-    
+
                 let result = await update.json();
-                if(result.modifiedCount===1){
+                if (result.modifiedCount === 1) {
+                    window.location.reload();
+                }
+                console.log("Update result:", result);
+            } catch (error) {
+                console.error("Error updating booking status:", error);
+            }
+        }
+    };
+
+    const handleRejectRequest = async (bookingId, status) => {
+        if (bookingId && status) {
+            try {
+                let update = await fetch(`http://localhost:4500/handleBookingRequest?bookingId=${bookingId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ status: status })
+                });
+
+                if (!update.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                let result = await update.json();
+                if (result.modifiedCount === 1) {
                     window.location.reload();
                 }
                 console.log("Update result:", result);
@@ -100,10 +125,26 @@ const ManageRequests = () => {
         setShowConfirmModal(false); // Close the confirm modal
     };
 
+    const handleRejectWithConfirmation = (bookingId) => {
+        setBookingToConfirm(bookingId);
+        setShowCancelModal(true); // Show the cancel modal
+    };
+
+    const handleCancelConfirm = () => {
+        if (bookingToConfirm) {
+            handleRejectRequest(bookingToConfirm, "Cancelled");
+        }
+        setShowCancelModal(false); // Close the cancel modal
+    };
+
+    const handleCancelCancel = () => {
+        setShowCancelModal(false); // Close the cancel modal
+    };
+
     return (
         <>
             <Navbar />
-            <Dashboard/>
+            <Dashboard />
             <h1 className={styles.main_heading}>{userName}'s PENDING REQUESTS</h1>
             <div className={styles.bookingsContainer}>
                 <table className={styles.bookingsTable}>
@@ -125,7 +166,7 @@ const ManageRequests = () => {
                                     <td className={styles.tableCell}>
                                         <button onClick={() => viewDetails(booking)} className={styles.actionButton}>View Details</button>
                                         <button className={styles.actionButton} onClick={() => confirmAcceptRequest(booking)}>Accept</button>
-                                        <button className={styles.actionButton}>Reject</button>
+                                        <button className={styles.actionButton} onClick={() => handleRejectWithConfirmation(booking._id)}>Reject</button>
                                     </td>
                                 </tr>
                             ))
@@ -141,10 +182,17 @@ const ManageRequests = () => {
                 <PendingDetailsModal booking={selectedBooking} onClose={closeDetails} />
             )}
             {showConfirmModal && (
-                <RequestConfirmModal 
+                <RequestConfirmModal
                     show={showConfirmModal}
-                    onConfirm={handleConfirm} 
-                    onCancel={handleCancel} 
+                    onConfirm={handleConfirm}
+                    onCancel={handleCancel}
+                />
+            )}
+            {showCancelModal && (
+                <CancelPendingModal
+                    show={showCancelModal}
+                    onConfirm={handleCancelConfirm}
+                    onCancel={handleCancelCancel}
                 />
             )}
         </>
