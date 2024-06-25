@@ -20,7 +20,7 @@ const Herosec = () =>{
 
             <div className="hero-btns">
                 <NavLink className="primary-btn" to="/services"><button>Services</button></NavLink>
-                <NavLink to="/dashboard"><button className="secondary-btn">Manage Services</button></NavLink>
+                <NavLink to="/overview"><button className="secondary-btn">Manage Services</button></NavLink>
             </div>
         </div>
 

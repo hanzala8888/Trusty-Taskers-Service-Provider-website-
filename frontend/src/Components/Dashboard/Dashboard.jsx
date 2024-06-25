@@ -33,24 +33,6 @@ const Dashboard = () => {
             )}
           </button>
 
-          {/* Dropdown menus */}
-          {/* <Dropdown className={styles.dropbtn} variant="link">
-            <Dropdown.Toggle
-              className={styles.mainbtn}
-              style={{ backgroundColor: '#d01c28', color: 'white', border: 'none' }}
-            >
-              <i className="fa fa-file" style={{ marginRight: '10px' }}></i> Overview
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={styles.dropdownMenuCustom}>
-              <Dropdown.Item as={NavLink} to='/summary-services' className={styles.dropdown_item}>
-                <i className="fa fa-list-alt" style={{ marginRight: '10px' }}></i> Summary of services
-              </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to='/mybookings' className={styles.dropdown_item}>
-                <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Bookings
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown> */}
-
           <NavLink to='/overview' className={`${styles.navbarItem} ${styles.notificationLink}`}>
               <i className="fa fa-file" style={{ marginRight: '10px' }}></i> Overview
           </NavLink> 
@@ -106,7 +88,7 @@ const Dashboard = () => {
               <Dropdown.Item as={NavLink} to='/profile' className={styles.dropdown_item}>
                 <i className="fa fa-user nav-icon" style={{ marginRight: '10px' }}></i> View Profile
               </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to='/accountsettings' className={styles.dropdown_item}>
+              <Dropdown.Item as={NavLink} to='/updatepassword' className={styles.dropdown_item}>
                 <i className="fa fa-cog" style={{ marginRight: '10px' }}></i> Account Settings
               </Dropdown.Item>
               <Dropdown.Item as={NavLink} to='/notifications' className={styles.dropdown_item}>

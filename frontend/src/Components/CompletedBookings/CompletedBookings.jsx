@@ -58,7 +58,7 @@ const closeDetails = () => {
         <>
             <Navbar />
             <Dashboard/>
-            <h1 className={styles.main_heading}>{userName}'s Ongoing Services</h1>
+            <h1 className={styles.main_heading}>{userName}'s Completed Services</h1>
             <div className={styles.bookingsContainer}>
                 <table className={styles.bookingsTable}>
                     <thead>

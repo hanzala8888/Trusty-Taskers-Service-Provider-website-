@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './PendingDetailsModal.module.css';
 
-const BookingDetailsModal = ({ booking, onClose }) => {
+const PendingDetailsModal = ({ booking, onClose }) => {
     useEffect(() => {
         // Add 'modal-open' class to body when modal is open
         document.body.classList.add('modal-open');
@@ -42,4 +42,4 @@ const BookingDetailsModal = ({ booking, onClose }) => {
     );
 };
 
-export default BookingDetailsModal;
+export default PendingDetailsModal;

@@ -8,7 +8,6 @@ import Footer from '../Footer/Footer';
 
 const RescheduleBooking = () => {
     const location = useLocation();
-    //const navigate = useNavigate();
     const { booking } = location.state; 
 
     const [updatedBooking, setUpdatedBooking] = useState(booking);

@@ -3,37 +3,138 @@ require("./database/config");
 const User = require("./database/User");
 const Service = require("./database/Services");
 const Booking = require("./database/BookNow");
-let Counter = require ("./database/Counter");
+let Counter = require("./database/Counter");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-//register
-app.post("/register", async (req, resp) => {
-  try {
-    // Check if the email already exists
-    let existingUser = await User.findOne({ email: req.body.email });
 
-    if (existingUser) {
-      // If user already exists, send an error message
-      return resp.status(400).json({ message: "User already registered" });
-    }
+// Configure nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  },
+});
 
-    // If email does not exist, proceed with registration
-    let user = new User(req.body);
-    let result = await user.save();
-    result = result.toObject();
-    delete result.password;
-
-    resp.send(result);
-  } catch (error) {
-    // Handle any errors
-    console.error("Error during registration:", error);
-    resp.status(500).json({ message: "Internal server error" });
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("Nodemailer transport verification failed:", error);
+  } else {
+    console.log("Nodemailer transport verified. Ready to send emails:", success);
   }
 });
+
+const generateOTP = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+const sendOTPEmail = async (email, otp) => {
+  const mailOptions = {
+    from: process.env.AUTH_EMAIL,
+    to: email,
+    subject: 'Your OTP for Signup',
+    text: `Your OTP is ${otp}`,
+  };
+
+  try {
+    console.log("Attempting to send email to:", email);
+    console.log("Mail options:", mailOptions);
+    let info = await transporter.sendMail(mailOptions);
+    console.log("Email sent: ", info.response);
+    return info;
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    throw error;
+  }
+};
+
+// Temporary storage for OTPs (can be replaced with a database collection)
+let otps = {};
+
+//register - initiate OTP generation
+app.post("/register", async (req, resp) => {
+  console.log("Register endpoint hit");
+  try {
+      let existingUser = await User.findOne({ email: req.body.email });
+      if (existingUser) {
+          console.log("User already registered with email:", req.body.email);
+          return resp.status(400).json({ message: "User already registered" });
+      }
+
+      // Store user data temporarily or use another method to manage OTPs
+      const userData = req.body;
+      const otp = generateOTP();
+      console.log("Generated OTP:", otp);
+      otps[req.body.email] = { otp, ...userData };
+
+      await sendOTPEmail(req.body.email, otp);
+      console.log("OTP sent to email:", req.body.email);
+      resp.status(200).json({ message: "OTP sent to email" });
+  } catch (error) {
+      console.error("Error during OTP generation:", error);
+      resp.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Verify OTP and complete registration
+app.post("/verify-otp", async (req, resp) => {
+  console.log("Verify OTP endpoint hit");
+  const { email, otp } = req.body;
+  const tempData = otps[email];
+
+  if (!tempData) {
+      console.log("No OTP found for email:", email);
+      return resp.status(400).json({ message: "Invalid OTP" });
+  }
+
+  if (tempData.otp !== otp) {
+      console.log("Invalid OTP for email:", email);
+      return resp.status(400).json({ message: "Invalid OTP" });
+  }
+
+  try {
+      let user = new User(tempData);
+      let result = await user.save();
+      delete otps[email]; // Remove temp data after successful registration
+
+      result = result.toObject();
+      delete result.password;
+      delete result.confirmPassword;
+
+      console.log("User registered successfully:", result);
+      resp.send(result);
+  } catch (error) {
+      console.error("Error during registration:", error);
+      resp.status(500).json({ message: "Internal server error" });
+  }
+});
+
+//register
+// app.post("/register", async (req, resp) => {
+//   try {
+//     let existingUser = await User.findOne({ email: req.body.email });
+
+//     if (existingUser) {
+//       return resp.status(400).json({ message: "User already registered" });
+//     }
+
+//     let user = new User(req.body);
+//     let result = await user.save();
+//     result = result.toObject();
+//     delete result.password;
+
+//     resp.send(result);
+//   } catch (error) {
+//     console.error("Error during registration:", error);
+//     resp.status(500).json({ message: "Internal server error" });
+//   }
+// });
 
 //login
 app.post("/login", async (req, resp) => {
@@ -312,13 +413,38 @@ app.get("/overviewProfile", async(req,resp)=>{
   resp.send(result)
 });
 
+//update password
+app.post("/updatepassword", async (req, resp) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    // Check if the user exists
+    if (!user) {
+      return resp.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the old password matches
+    if (user.password !== oldPassword) {
+      return resp.status(400).json({ message: "Old password is incorrect" });
+    }
+
+    // Update the password
+    user.password = newPassword;
+    user.confirmPassword = newPassword;
+    await user.save();
+
+    resp.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    resp.status(500).json({ message: "Internal server error" });
+  }
+});
 
 
 
 app.listen(4500);
-
-
-
 
 
 
